@@ -13,7 +13,7 @@ export default function FAQItem({ question, answer, isOpen: initialIsOpen = fals
   const [isOpen, setIsOpen] = useState(initialIsOpen)
 
   return (
-    <div className="border-t border-white/20 py-2">
+    <div className="border-t border-t-border py-2">
       {/* Botón */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
@@ -45,7 +45,7 @@ export default function FAQItem({ question, answer, isOpen: initialIsOpen = fals
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="overflow-hidden"
           >
-            <div className="pb-6 text-lg text-white/60 leading-relaxed max-w-3xl">
+            <div className="pb-6 text-lg text-t-text-secondary leading-relaxed max-w-3xl">
               {answer}
             </div>
           </motion.div>

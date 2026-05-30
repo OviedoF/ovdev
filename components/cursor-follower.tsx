@@ -8,7 +8,13 @@ export default function CursorFollower() {
   const [isVisible, setIsVisible] = useState(false)
   const rafRef = useRef<number>()
 
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
   useEffect(() => {
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    setIsTouchDevice(isTouch)
+    if (isTouch) return
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
       if (!isVisible) setIsVisible(true)
@@ -31,6 +37,8 @@ export default function CursorFollower() {
   }, [isVisible])
 
   useEffect(() => {
+    if (isTouchDevice) return
+
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor
     }
@@ -50,7 +58,9 @@ export default function CursorFollower() {
         cancelAnimationFrame(rafRef.current)
       }
     }
-  }, [mousePosition])
+  }, [mousePosition, isTouchDevice])
+
+  if (isTouchDevice) return null
 
   return (
     <div
@@ -62,7 +72,7 @@ export default function CursorFollower() {
       }}
     >
       <div className="relative -translate-x-1/2 -translate-y-1/2">
-        <div className="h-6 w-6 rounded-full border-2 border-white" />
+        <div className="h-6 w-6 rounded-full border-2 border-t-cursor" />
       </div>
     </div>
   )

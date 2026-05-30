@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import CursorFollower from '@/components/cursor-follower'
+import { TransitionProvider } from '@/lib/transition-context'
+import TransitionOverlay from '@/components/transition-overlay'
+import { I18nProvider } from '@/lib/i18n'
+import { ThemeProvider } from '@/lib/theme'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -29,16 +33,41 @@ export const metadata: Metadata = {
   },
 }
 
+const themeScript = `
+(function(){
+  try {
+    var t = localStorage.getItem('portfolio-theme');
+    if (t && ['deep-forests','underwater','pink-horizon','cat-sunset','miracle-night','route-dream','no-angels','tomorrow'].indexOf(t) !== -1) {
+      document.documentElement.setAttribute('data-theme', t);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'miracle-night');
+    }
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'miracle-night');
+  }
+})();
+`
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={`font-sans antialiased`}>
-        <CursorFollower />
-        {children}
+        <ThemeProvider>
+          <I18nProvider>
+            <TransitionProvider>
+              <CursorFollower />
+              <TransitionOverlay />
+              {children}
+            </TransitionProvider>
+          </I18nProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

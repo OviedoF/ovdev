@@ -39,7 +39,7 @@ export default function FAQ() {
           {/* Left side - Title */}
           <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-2 h-2 rounded-full bg-white" />
+              <div className="w-2 h-2 rounded-full bg-t-accent" />
               <span className="text-sm tracking-widest uppercase">FAQ</span>
             </div>
             <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[0.9] tracking-tight">
@@ -65,14 +65,14 @@ export default function FAQ() {
                 
                 {openIndex === index && faq.answer && (
                   <div className="pb-8 pr-12">
-                    <p className="text-gray-400 text-base md:text-lg leading-relaxed">
+                    <p className="text-t-text-secondary text-base md:text-lg leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
                 )}
                 
                 {index < faqs.length - 1 && (
-                  <div className="h-px bg-white/20 w-full" />
+                  <div className="h-px bg-t-border w-full" />
                 )}
               </div>
             ))}
