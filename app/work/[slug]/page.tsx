@@ -1,14 +1,111 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import TransitionLink from '@/components/transition-link'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import { projects } from '@/lib/projects'
 import { useTranslation } from '@/lib/i18n'
 import { getTranslatedProject, initProjectTranslations } from '@/lib/translations'
+
+function ImageSlider({ images, title }: { images: string[]; title: string }) {
+  const [current, setCurrent] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  const go = useCallback((idx: number) => {
+    setDirection(idx > current ? 1 : -1)
+    setCurrent(idx)
+  }, [current])
+
+  const prev = useCallback(() => {
+    setDirection(-1)
+    setCurrent((c) => (c === 0 ? images.length - 1 : c - 1))
+  }, [images.length])
+
+  const next = useCallback(() => {
+    setDirection(1)
+    setCurrent((c) => (c === images.length - 1 ? 0 : c + 1))
+  }, [images.length])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight') next()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [prev, next])
+
+  const variants = {
+    enter: (d: number) => ({ x: d > 0 ? '60%' : '-60%', opacity: 0, scale: 0.95 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (d: number) => ({ x: d > 0 ? '-60%' : '60%', opacity: 0, scale: 0.95 }),
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Main image */}
+      <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-t-card group">
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <motion.img
+            key={current}
+            src={images[current]}
+            alt={`${title} - ${current + 1}`}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+
+        {/* Arrows */}
+        <button
+          onClick={prev}
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-t-bg/70 backdrop-blur-sm border border-t-border-light/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-t-bg/90 hover:border-t-accent/50"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-t-bg/70 backdrop-blur-sm border border-t-border-light/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-t-bg/90 hover:border-t-accent/50"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+
+        {/* Counter */}
+        <div className="absolute bottom-3 right-3 z-20 px-3 py-1.5 rounded-lg bg-t-bg/70 backdrop-blur-sm border border-t-border-light/50 text-xs font-mono text-t-text-secondary">
+          {current + 1} / {images.length}
+        </div>
+      </div>
+
+      {/* Thumbnails */}
+      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+        {images.map((img, i) => (
+          <button
+            key={i}
+            onClick={() => go(i)}
+            className={`relative shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+              i === current
+                ? 'border-t-accent shadow-[0_0_12px_var(--t-glow)]'
+                : 'border-transparent opacity-50 hover:opacity-80'
+            }`}
+          >
+            <img src={img} alt={`${title} - ${i + 1}`} className="w-full h-full object-cover" />
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function ProjectDetailPage() {
   const params = useParams()
@@ -63,6 +160,10 @@ export default function ProjectDetailPage() {
       </div>
     )
   }
+
+  const allImages = project.images.length > 0
+    ? [project.image, ...project.images]
+    : []
 
   return (
     <div className="min-h-screen">
@@ -128,19 +229,22 @@ export default function ProjectDetailPage() {
         <div className="w-full h-px bg-t-border" />
       </section>
 
-      {/* ===== IMAGE ===== */}
-      {project.image && (
-        <section className="px-4 sm:px-6 md:px-12 lg:px-16 pb-16 md:pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-t-card"
-          >
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-          </motion.div>
-        </section>
-      )}
+      {/* ===== IMAGE / SLIDER ===== */}
+      <section className="px-4 sm:px-6 md:px-12 lg:px-16 pb-16 md:pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {allImages.length > 1 ? (
+            <ImageSlider images={allImages} title={project.title} />
+          ) : project.image ? (
+            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-t-card">
+              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+            </div>
+          ) : null}
+        </motion.div>
+      </section>
 
       {/* ===== DESCRIPTION ===== */}
       <section className="px-4 sm:px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
