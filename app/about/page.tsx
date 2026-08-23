@@ -1,487 +1,351 @@
 'use client'
 
-import { motion, useMotionValue, useTransform, useInView } from "framer-motion"
-import { useEffect, useState, useRef } from 'react'
+import { useRef, type ReactNode } from 'react'
+import { ArrowRight, ArrowUpRight, Code2, LifeBuoy, MessageCircle, Route, Sparkles } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import FAQItem from '@/components/FAQItem'
+import PatternBg from '@/components/home/pattern-bg'
 import TransitionLink from '@/components/transition-link'
+import { ContactButton } from '@/components/contact-fab'
+import { RevealWords, RevealBlock } from '@/components/home/reveal'
 import { useTranslation } from '@/lib/i18n'
+import { gsap, ScrollTrigger, useGSAP, EASE_OUT } from '@/lib/gsap'
 
-const wordContainer = (delay = 0) => ({
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: delay,
-    },
-  },
-})
+/* ------------------------------------------------------------------ */
+/* Piezas                                                              */
+/* ------------------------------------------------------------------ */
 
-const wordReveal = {
-  hidden: { y: '110%', opacity: 0, rotateX: 40 },
-  show: {
-    y: '0%',
-    opacity: 1,
-    rotateX: 0,
-    transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] },
-  },
-}
-
-function AnimatedHeading({ text, className }: { text: string; className?: string }) {
+function Eyebrow({ n, text, className = '' }: { n: string; text: string; className?: string }) {
   return (
-    <motion.span variants={wordContainer()} initial="hidden" whileInView="show" viewport={{ once: true }} className={className}>
-      {text.split(' ').map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden mr-[0.3em]" style={{ perspective: '400px' }}>
-          <motion.span variants={wordReveal} className="inline-block origin-bottom">
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </motion.span>
+    <p className={`flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-t-text-tertiary ${className}`}>
+      <span className="font-mono text-t-accent">{n}</span>
+      <span className="w-8 h-px bg-t-accent/60" />
+      {text}
+    </p>
   )
 }
 
-function AnimatedCounter({ target, suffix = '', label, delay = 0 }: { target: number; suffix?: string; label: string; delay?: number }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-50px" })
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!isInView) return
-    const duration = 2000
-    const startTime = performance.now()
-    const tick = (now: number) => {
-      const elapsed = now - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.round(eased * target))
-      if (progress < 1) requestAnimationFrame(tick)
-    }
-    const timeout = setTimeout(() => requestAnimationFrame(tick), delay * 1000)
-    return () => clearTimeout(timeout)
-  }, [isInView, target, delay])
-
+/** Número que cuenta hasta `target` al entrar en pantalla */
+function Counter({ target, suffix = '+', label }: { target: number; suffix?: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useGSAP(
+    () => {
+      const num = ref.current!.querySelector<HTMLElement>('[data-num]')!
+      const obj = { v: 0 }
+      gsap.to(obj, {
+        v: target,
+        duration: 1.8,
+        ease: 'power3.out',
+        onUpdate: () => (num.textContent = String(Math.round(obj.v))),
+        scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
+      })
+    },
+    { scope: ref },
+  )
   return (
-    <div ref={ref} className="text-center">
-      <div className="flex items-baseline justify-center gap-1">
-        <span className="text-[clamp(3rem,8vw,6rem)] font-bold leading-none tabular-nums" style={{
-          background: 'linear-gradient(135deg, var(--t-text), var(--t-accent))',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-        }}>
-          {count}
+    <div ref={ref} className="rounded-2xl border border-t-border-light/40 bg-t-card/40 p-5 md:p-6">
+      <div className="flex items-baseline gap-0.5">
+        <span data-num className="text-[clamp(2.4rem,5vw,3.6rem)] font-bold leading-none tracking-[-0.03em] tabular-nums text-t-text">
+          0
         </span>
-        <span className="text-[clamp(1.5rem,4vw,3rem)] font-bold text-t-accent">{suffix}</span>
+        <span className="text-2xl md:text-3xl font-bold text-t-accent leading-none">{suffix}</span>
       </div>
-      <div className="h-px bg-t-accent/40 my-3 mx-auto w-16" />
-      <span className="text-sm text-t-text-tertiary">{label}</span>
+      <p className="mt-2 text-xs md:text-sm text-t-text-tertiary">{label}</p>
     </div>
   )
 }
 
-function ProcessCard({ title, desc, number, icon, index }: { title: string; desc: string; number: string; icon: React.ReactNode; index: number }) {
-  const [hovered, setHovered] = useState(false)
-  const mouseX = useMotionValue(0.5)
-  const mouseY = useMotionValue(0.5)
-  const glowX = useTransform(mouseX, [0, 1], ['0%', '100%'])
-  const glowY = useTransform(mouseY, [0, 1], ['0%', '100%'])
-  const glowBg = useTransform(
-    [glowX, glowY],
-    ([x, y]) => `radial-gradient(350px circle at ${x} ${y}, var(--t-accent) 0%, transparent 70%)`
+/** Datos clave del hero: lista tipográfica, sin cajas. Entra en stagger. */
+function Facts() {
+  const { t } = useTranslation()
+  const ref = useRef<HTMLDListElement>(null)
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        ref.current!.querySelectorAll('[data-fact]'),
+        { autoAlpha: 0, y: 14 },
+        { autoAlpha: 1, y: 0, duration: 0.8, ease: EASE_OUT, stagger: 0.09, delay: 0.55 },
+      )
+      gsap.fromTo(ref.current!.querySelectorAll('[data-rule]'), { scaleX: 0 }, { scaleX: 1, duration: 1, ease: EASE_OUT, stagger: 0.09, delay: 0.5 })
+    },
+    { scope: ref },
   )
-
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    mouseX.set((e.clientX - rect.left) / rect.width)
-    mouseY.set((e.clientY - rect.top) / rect.height)
-  }
-
+  const facts: [string, ReactNode][] = [
+    [t('aboutPage.fact.location.k'), t('aboutPage.fact.location.v')],
+    [t('aboutPage.fact.exp.k'), t('aboutPage.fact.exp.v')],
+    [
+      t('aboutPage.fact.avail.k'),
+      <span key="a" className="inline-flex items-center gap-2">
+        <span className="relative flex w-2 h-2">
+          <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping" />
+          <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
+        </span>
+        {t('aboutPage.fact.avail.v')}
+      </span>,
+    ],
+    [t('aboutPage.fact.reply.k'), t('aboutPage.fact.reply.v')],
+  ]
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1], delay: index * 0.12 }}
-      onMouseMove={handleMouse}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setHovered(false); mouseX.set(0.5); mouseY.set(0.5) }}
-      className="group relative rounded-2xl border border-t-border-light p-8 md:p-10 overflow-hidden transition-all duration-300 hover:border-t-accent/50 hover:shadow-[0_8px_40px_var(--t-glow)]"
-    >
-      <motion.div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
-        style={{ background: glowBg, opacity: hovered ? 0.07 : 0 }}
-      />
-
-      <div className="relative">
-        <div className="flex items-center justify-between mb-6">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1], delay: 0.2 + index * 0.1 }}
-            className="w-14 h-14 rounded-xl bg-t-accent/10 border border-t-accent/20 flex items-center justify-center text-t-accent"
-          >
-            {icon}
-          </motion.div>
-          <span className="text-[4rem] md:text-[5rem] font-bold leading-none" style={{
-            background: 'linear-gradient(135deg, var(--t-grad-from), var(--t-grad-to))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            opacity: 0.2,
-          }}>
-            {number}
-          </span>
+    <dl ref={ref} className="w-full md:max-w-[380px] md:ml-auto md:pt-6">
+      {facts.map(([k, v], i) => (
+        <div key={i} className="relative py-4 md:py-5">
+          <span data-rule aria-hidden className="absolute left-0 top-0 w-full h-px bg-t-border-light/50 origin-left" />
+          <div data-fact className="flex items-baseline justify-between gap-6 opacity-0 invisible">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-t-text-tertiary">{k}</dt>
+            <dd className="text-sm md:text-[15px] font-medium text-t-text text-right">{v}</dd>
+          </div>
         </div>
-
-        <h3 className="text-xl md:text-2xl font-bold mb-4 group-hover:text-t-accent transition-colors duration-300">{title}</h3>
-        <p className="text-base text-t-text-secondary leading-relaxed">{desc}</p>
-      </div>
-    </motion.div>
+      ))}
+      <span data-rule aria-hidden className="block w-full h-px bg-t-border-light/50 origin-left" />
+    </dl>
   )
 }
 
-const techCategories = [
-  {
-    label: 'Frontend',
-    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'React Native', 'Expo'],
-  },
-  {
-    label: 'Backend',
-    items: ['Node.js', 'Express', 'NestJS', 'GraphQL', 'REST APIs', 'WebSockets'],
-  },
-  {
-    label: 'Database',
-    items: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase', 'Prisma', 'Supabase'],
-  },
-  {
-    label: 'DevOps & Tools',
-    items: ['Docker', 'AWS', 'Vercel', 'GitHub Actions', 'Figma', 'Stripe'],
-  },
+const TECH = [
+  { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'React Native', 'Expo'] },
+  { label: 'Backend', items: ['Node.js', 'Express', 'NestJS', 'GraphQL', 'REST APIs', 'WebSockets'] },
+  { label: 'Datos', items: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase', 'Prisma', 'Supabase'] },
+  { label: 'Infra & tools', items: ['Docker', 'AWS', 'Vercel', 'GitHub Actions', 'Figma', 'Stripe'] },
 ]
 
-const processIcons = [
-  <svg key="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-  </svg>,
-  <svg key="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-    <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
-  </svg>,
-  <svg key="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="w-6 h-6">
-    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-  </svg>,
-  <svg key="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-    <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
-  </svg>,
+const PROCESS_ICONS: ReactNode[] = [
+  <MessageCircle key="1" className="w-4 h-4" strokeWidth={2} />,
+  <Route key="2" className="w-4 h-4" strokeWidth={2} />,
+  <Code2 key="3" className="w-4 h-4" strokeWidth={2} />,
+  <LifeBuoy key="4" className="w-4 h-4" strokeWidth={2} />,
 ]
+
+/* ------------------------------------------------------------------ */
+/* Página                                                              */
+/* ------------------------------------------------------------------ */
 
 export default function AboutPage() {
   const { t } = useTranslation()
-  const x = useMotionValue(0)
-  const rotateY = useTransform(x, [0, 1000], [-8, 8])
+  const ref = useRef<HTMLElement>(null)
+
+  useGSAP(
+    () => {
+      // Chips del stack: pop en stagger por fila
+      gsap.utils.toArray<HTMLElement>('[data-tech-row]').forEach((row) => {
+        gsap.fromTo(
+          row.querySelectorAll('[data-chip]'),
+          { autoAlpha: 0, y: 10, scale: 0.9 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.8)', stagger: 0.04, scrollTrigger: { trigger: row, start: 'top 85%', once: true } },
+        )
+      })
+
+      // Línea de tiempo del proceso: se "dibuja" con el scroll
+      const line = document.querySelector<HTMLElement>('[data-line-fill]')
+      const list = document.querySelector<HTMLElement>('[data-timeline]')
+      if (line && list) {
+        gsap.fromTo(
+          line,
+          { scaleY: 0 },
+          { scaleY: 1, ease: 'none', scrollTrigger: { trigger: list, start: 'top 70%', end: 'bottom 70%', scrub: 0.4 } },
+        )
+      }
+      gsap.utils.toArray<HTMLElement>('[data-step]').forEach((step) => {
+        const node = step.querySelector('[data-node]')
+        const body = step.querySelector('[data-body]')
+        const tl = gsap.timeline({ scrollTrigger: { trigger: step, start: 'top 75%', once: true } })
+        tl.fromTo(node, { scale: 0.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, ease: 'back.out(2)' })
+        tl.fromTo(body, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: EASE_OUT }, '<0.1')
+      })
+
+      ScrollTrigger.refresh()
+    },
+    { scope: ref },
+  )
+
+  const steps = [1, 2, 3, 4] as const
 
   return (
-    <main className="min-h-screen" onMouseMove={(e) => x.set(e.clientX)}>
+    <main ref={ref} className="min-h-screen">
       <Navigation />
+      <PatternBg />
 
       {/* ===================== HERO ===================== */}
-      <section className="px-6 md:px-12 lg:px-20 pt-32 md:pt-40 pb-16 md:pb-24">
-        <div className="max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-            className="flex items-center gap-3 mb-8"
-          >
-            <span className="text-xs font-mono text-t-text-tertiary tracking-wider">01</span>
-            <span className="w-8 h-px bg-t-border" />
-            <span className="text-xs uppercase tracking-widest text-t-text-tertiary">{t('aboutPage.who.label')}</span>
-          </motion.div>
-
-          <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[0.95] tracking-tight mb-10">
-            <AnimatedHeading text={t('aboutPage.hero.title')} />
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
-            className="text-lg md:text-xl text-t-text-secondary leading-relaxed max-w-[700px]"
-          >
-            {t('aboutPage.hero.subtitle')}
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ===================== WHO AM I ===================== */}
-      <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-12 md:gap-20 items-center">
-
-            <motion.div
-              style={{ rotateY }}
-              className="flex items-center justify-center"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.4 }}
-            >
-              <motion.div
-                className="w-56 h-56 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-[var(--t-grad-from)] to-[var(--t-grad-to)] blur-[2px] relative overflow-hidden shadow-[0_0_60px_var(--t-glow)]"
-                animate={{
-                  boxShadow: [
-                    "0 0 60px var(--t-glow)",
-                    "0 0 90px var(--t-glow-strong)",
-                    "0 0 60px var(--t-glow)"
-                  ],
-                  scale: [1, 1.04, 1],
-                  rotate: [0, 15, -10, 0],
-                  borderRadius: ["50%", "47%", "53%", "48%", "50%"],
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <motion.div
-                  className="absolute inset-0"
-                  animate={{
-                    background: [
-                      "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent 60%)",
-                      "radial-gradient(circle at 60% 40%, rgba(255,255,255,0.4), transparent 60%)",
-                      "radial-gradient(circle at 40% 70%, rgba(255,255,255,0.35), transparent 60%)",
-                      "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent 60%)",
-                    ]
-                  }}
-                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <p
-                className="text-lg md:text-xl leading-relaxed text-t-text-secondary mb-8"
-                dangerouslySetInnerHTML={{ __html: t('aboutPage.who.desc') }}
-              />
-
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
+      <section data-pattern="dots" className="px-6 md:px-12 lg:px-20 pt-32 md:pt-40 pb-16 md:pb-28">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[1.25fr_0.75fr] gap-12 md:gap-16 items-end">
+          <div>
+            <Eyebrow n="01" text={t('aboutPage.hero.label')} className="mb-8" />
+            <h1 className="text-[clamp(2.6rem,6.5vw,5.2rem)] font-bold leading-[0.98] tracking-[-0.03em] text-t-text">
+              <RevealWords text={t('aboutPage.hero.title')} onScroll={false} delay={0.15} />
+            </h1>
+            <RevealBlock delay={0.5}>
+              <p className="mt-8 text-lg md:text-xl text-t-text-secondary leading-relaxed max-w-[560px]">{t('aboutPage.hero.subtitle')}</p>
+              <div className="mt-9 flex flex-wrap items-center gap-6">
                 <TransitionLink
-                  href="/contact"
-                  className="inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-t-btn-bg text-t-btn-text font-semibold text-sm hover:shadow-[0_4px_24px_var(--t-glow-strong)] hover:scale-[1.03] transition-all duration-300"
+                  href="/work"
+                  className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-full border border-t-border-light/60 text-sm font-semibold text-t-text hover:border-t-accent/70 hover:text-t-accent transition-colors"
                 >
-                  {t('aboutPage.who.cta')}
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  {t('aboutPage.hero.work')}
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </TransitionLink>
-              </motion.div>
-            </motion.div>
+                <span className="inline-flex items-center gap-2 text-sm text-t-text-tertiary">
+                  <Sparkles className="w-4 h-4 text-t-accent" />
+                  {t('aboutPage.hero.note')}
+                </span>
+              </div>
+            </RevealBlock>
           </div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="h-px w-full bg-gradient-to-r from-transparent via-t-accent/30 to-transparent my-16 md:my-20 origin-center"
-          />
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <AnimatedCounter target={35} suffix="+" label={t('aboutPage.who.projects')} delay={0} />
-            <AnimatedCounter target={4} suffix="+" label={t('aboutPage.who.experience')} delay={0.1} />
-            <AnimatedCounter target={20} suffix="+" label={t('aboutPage.who.clients')} delay={0.2} />
-            <AnimatedCounter target={6} suffix="+" label={t('aboutPage.who.countries')} delay={0.3} />
-          </div>
+          <Facts />
         </div>
       </section>
 
-      {/* ===================== TECH STACK ===================== */}
-      <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
+      {/* ===================== QUIÉN SOY ===================== */}
+      <section data-pattern="grid" className="px-6 md:px-12 lg:px-20 py-20 md:py-32">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-12 md:gap-20">
+          <div>
+            <Eyebrow n="02" text={t('aboutPage.who.label')} className="mb-6" />
+            <h2 className="text-[clamp(1.9rem,4vw,3.2rem)] font-bold leading-[1.05] tracking-[-0.025em] text-t-text">
+              <RevealWords text={t('aboutPage.who.title')} />
+            </h2>
+            <div className="mt-10 grid grid-cols-2 gap-3 md:gap-4">
+              <Counter target={35} label={t('aboutPage.who.projects')} />
+              <Counter target={4} label={t('aboutPage.who.experience')} />
+              <Counter target={20} label={t('aboutPage.who.clients')} />
+              <Counter target={6} label={t('aboutPage.who.countries')} />
+            </div>
+          </div>
+          <RevealBlock delay={0.1} className="md:pt-16">
+            <div
+              className="text-lg md:text-xl leading-relaxed text-t-text-secondary [&_b]:text-t-text [&_b]:font-semibold"
+              dangerouslySetInnerHTML={{ __html: t('aboutPage.who.desc') }}
+            />
+            <ul className="mt-8 flex flex-wrap gap-2.5">
+              {[t('aboutPage.who.tag1'), t('aboutPage.who.tag2'), t('aboutPage.who.tag3')].map((tag) => (
+                <li key={tag} className="px-3.5 py-1.5 rounded-full bg-t-accent/10 text-t-accent text-xs font-semibold tracking-wide">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </RevealBlock>
+        </div>
+      </section>
+
+      {/* ===================== HERRAMIENTAS ===================== */}
+      <section data-pattern="cross" className="px-6 md:px-12 lg:px-20 py-20 md:py-32">
         <div className="max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <span className="text-xs font-mono text-t-text-tertiary tracking-wider">02</span>
-            <span className="w-8 h-px bg-t-border" />
-            <span className="text-xs uppercase tracking-widest text-t-text-tertiary">{t('aboutPage.tech.label')}</span>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-6 md:gap-20 items-end mb-10 md:mb-14">
+            <div>
+              <Eyebrow n="03" text={t('aboutPage.tech.label')} className="mb-6" />
+              <h2 className="text-[clamp(1.9rem,4vw,3.2rem)] font-bold leading-[1.05] tracking-[-0.025em] text-t-text">
+                <RevealWords text={t('aboutPage.tech.title')} />
+              </h2>
+            </div>
+            <RevealBlock>
+              <p className="text-base md:text-lg text-t-text-tertiary leading-relaxed max-w-[460px]">{t('aboutPage.tech.sub')}</p>
+            </RevealBlock>
+          </div>
 
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1] tracking-tight mb-12">
-            <AnimatedHeading text={t('aboutPage.tech.title')} />
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {techCategories.map((category, catIdx) => (
-              <motion.div
-                key={catIdx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1], delay: catIdx * 0.1 }}
-                className="rounded-xl border border-t-border-light p-5 md:p-6"
-              >
-                <span className="text-[11px] uppercase tracking-widest text-t-accent font-semibold mb-4 block">{category.label}</span>
+          <div className="border-t border-t-border-light/40">
+            {TECH.map((cat) => (
+              <div key={cat.label} data-tech-row className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6 md:py-7 border-b border-t-border-light/40">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-t-accent md:pt-2">{cat.label}</span>
                 <div className="flex flex-wrap gap-2">
-                  {category.items.map((tech, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.2 + catIdx * 0.08 + i * 0.04 }}
-                      whileHover={{ scale: 1.08, y: -2 }}
-                      className="px-3 py-1.5 rounded-md border border-t-border-light/50 text-xs font-mono text-t-text-tertiary hover:text-t-accent hover:border-t-accent/50 transition-all duration-300 cursor-default"
+                  {cat.items.map((item) => (
+                    <span
+                      key={item}
+                      data-chip
+                      className="opacity-0 invisible px-3.5 py-1.5 rounded-full border border-t-border-light/50 bg-t-card/40 text-[13px] font-mono text-t-text-secondary hover:text-t-accent hover:border-t-accent/60 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
                     >
-                      {tech}
-                    </motion.span>
+                      {item}
+                    </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===================== PROCESS ===================== */}
-      <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
+      {/* ===================== PROCESO ===================== */}
+      <section data-pattern="diag" className="px-6 md:px-12 lg:px-20 py-20 md:py-32">
         <div className="max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <span className="text-xs font-mono text-t-text-tertiary tracking-wider">03</span>
-            <span className="w-8 h-px bg-t-border" />
-            <span className="text-xs uppercase tracking-widest text-t-text-tertiary">{t('aboutPage.process.label')}</span>
-          </motion.div>
-
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1] tracking-tight mb-14">
-            <AnimatedHeading text={t('aboutPage.process.title')} />
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-            <ProcessCard title={t('aboutPage.process.card1.title')} desc={t('aboutPage.process.card1.desc')} number="01" icon={processIcons[0]} index={0} />
-            <ProcessCard title={t('aboutPage.process.card2.title')} desc={t('aboutPage.process.card2.desc')} number="02" icon={processIcons[1]} index={1} />
-            <ProcessCard title={t('aboutPage.process.card3.title')} desc={t('aboutPage.process.card3.desc')} number="03" icon={processIcons[2]} index={2} />
-            <ProcessCard title={t('aboutPage.process.card4.title')} desc={t('aboutPage.process.card4.desc')} number="04" icon={processIcons[3]} index={3} />
+          <div className="text-center max-w-[640px] mx-auto mb-14 md:mb-20">
+            <Eyebrow n="04" text={t('aboutPage.process.label')} className="justify-center mb-6" />
+            <h2 className="text-[clamp(1.9rem,4vw,3.2rem)] font-bold leading-[1.05] tracking-[-0.025em] text-t-text">
+              <RevealWords text={t('aboutPage.process.title')} />
+            </h2>
+            <RevealBlock>
+              <p className="mt-5 text-base md:text-lg text-t-text-tertiary">{t('aboutPage.process.sub')}</p>
+            </RevealBlock>
           </div>
+
+          <ol data-timeline className="relative max-w-[960px] mx-auto">
+            {/* línea base + línea que se dibuja */}
+            <div aria-hidden className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-t-border-light/40 md:-translate-x-1/2" />
+            <div aria-hidden data-line-fill className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-t-accent origin-top md:-translate-x-1/2" />
+            {steps.map((n, i) => {
+              const left = i % 2 === 0
+              return (
+                <li key={n} data-step className="relative pl-16 md:pl-0 py-6 md:py-8 md:grid md:grid-cols-2">
+                  <span
+                    data-node
+                    className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-6 md:top-8 grid place-items-center w-10 h-10 rounded-full bg-t-bg border border-t-accent text-t-accent shadow-[0_0_0_6px_var(--t-bg)]"
+                  >
+                    {PROCESS_ICONS[i]}
+                  </span>
+                  <div data-body className={`${left ? 'md:col-start-1 md:pr-16 md:text-right' : 'md:col-start-2 md:pl-16'}`}>
+                    <span className="text-[11px] font-mono text-t-text-tertiary">0{n}</span>
+                    <h3 className="mt-1 text-xl md:text-2xl font-bold tracking-tight text-t-text">{t(`aboutPage.process.card${n}.title`)}</h3>
+                    <p className="mt-3 text-base text-t-text-secondary leading-relaxed">{t(`aboutPage.process.card${n}.desc`)}</p>
+                  </div>
+                </li>
+              )
+            })}
+          </ol>
         </div>
       </section>
 
       {/* ===================== FAQ ===================== */}
-      <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid md:grid-cols-[1fr_1.5fr] gap-12 md:gap-20">
-
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-                className="flex items-center gap-3 mb-6"
+      <section data-pattern="dots" className="px-6 md:px-12 lg:px-20 py-20 md:py-32">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-10 md:gap-20">
+          <div className="md:sticky md:top-28 md:self-start">
+            <Eyebrow n="05" text={t('aboutPage.faq.label')} className="mb-6" />
+            <h2 className="text-[clamp(1.9rem,4vw,3.2rem)] font-bold leading-[1.05] tracking-[-0.025em] text-t-text">
+              <RevealWords text={t('aboutPage.faq.title')} />
+            </h2>
+            <RevealBlock>
+              <p className="mt-5 text-base text-t-text-tertiary leading-relaxed max-w-[360px]">{t('aboutPage.faq.subtitle')}</p>
+              <TransitionLink
+                href="/contact"
+                className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-t-text hover:text-t-accent transition-colors"
               >
-                <span className="text-xs font-mono text-t-text-tertiary tracking-wider">04</span>
-                <span className="w-8 h-px bg-t-border" />
-                <span className="text-xs uppercase tracking-widest text-t-text-tertiary">{t('aboutPage.faq.label')}</span>
-              </motion.div>
-
-              <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1] tracking-tight mb-4">
-                <AnimatedHeading text={t('aboutPage.faq.title')} />
-              </h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-sm text-t-text-tertiary leading-relaxed"
-              >
-                {t('aboutPage.faq.subtitle')}
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="space-y-0"
-            >
-              <FAQItem question={t('aboutPage.faq.q1')} answer={t('aboutPage.faq.a1')} isOpen={true} />
-              <FAQItem question={t('aboutPage.faq.q2')} answer={t('aboutPage.faq.a2')} />
-              <FAQItem question={t('aboutPage.faq.q3')} answer={t('aboutPage.faq.a3')} />
-              <FAQItem question={t('aboutPage.faq.q4')} answer={t('aboutPage.faq.a4')} />
-              <FAQItem question={t('aboutPage.faq.q5')} answer={t('aboutPage.faq.a5')} />
-              <FAQItem question={t('aboutPage.faq.q6')} answer={t('aboutPage.faq.a6')} />
-            </motion.div>
+                {t('aboutPage.faq.more')}
+                <ArrowRight className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1" />
+              </TransitionLink>
+            </RevealBlock>
           </div>
+          <RevealBlock delay={0.1}>
+            <FAQItem question={t('aboutPage.faq.q1')} answer={t('aboutPage.faq.a1')} isOpen />
+            <FAQItem question={t('aboutPage.faq.q2')} answer={t('aboutPage.faq.a2')} />
+            <FAQItem question={t('aboutPage.faq.q3')} answer={t('aboutPage.faq.a3')} />
+            <FAQItem question={t('aboutPage.faq.q4')} answer={t('aboutPage.faq.a4')} />
+            <FAQItem question={t('aboutPage.faq.q5')} answer={t('aboutPage.faq.a5')} />
+            <FAQItem question={t('aboutPage.faq.q6')} answer={t('aboutPage.faq.a6')} />
+          </RevealBlock>
         </div>
       </section>
 
       {/* ===================== CTA ===================== */}
-      <section className="px-6 md:px-12 lg:px-20 py-20 md:py-32">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="h-px w-full bg-gradient-to-r from-transparent via-t-accent/40 to-transparent mb-16 origin-center"
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-xs uppercase tracking-widest text-t-text-tertiary mb-4"
-          >
-            {t('cta.subtitle')}
-          </motion.p>
-
-          <h2 className="text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[0.95] tracking-tight mb-6">
-            <AnimatedHeading text={t('cta.title')} />
+      <section data-pattern="none" className="px-6 md:px-12 lg:px-20 py-24 md:py-36">
+        <div className="max-w-[820px] mx-auto text-center">
+          <Eyebrow n="06" text={t('cta.subtitle')} className="justify-center mb-6" />
+          <h2 className="text-[clamp(2.4rem,6.5vw,5rem)] font-bold leading-[0.98] tracking-[-0.03em] text-t-text">
+            <RevealWords text={t('cta.title')} />
           </h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg text-t-text-secondary max-w-[500px] mx-auto mb-10"
-          >
-            {t('cta.desc')}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <TransitionLink
-              href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-t-btn-bg text-t-btn-text font-bold text-base hover:shadow-[0_8px_40px_var(--t-glow-strong)] hover:scale-[1.04] transition-all duration-300"
-            >
-              {t('cta.button')}
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </TransitionLink>
-          </motion.div>
+          <RevealBlock>
+            <p className="mt-6 text-base md:text-lg text-t-text-secondary max-w-[520px] mx-auto leading-relaxed">{t('cta.desc')}</p>
+            <div className="mt-10 flex justify-center">
+              {/* Acá aterriza el botón flotante de contacto */}
+              <span data-fab-slot className="inline-flex invisible">
+                <ContactButton />
+              </span>
+            </div>
+          </RevealBlock>
         </div>
       </section>
 

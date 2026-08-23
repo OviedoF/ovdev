@@ -73,12 +73,12 @@ function TestimonialCard({ quote, author, role, index }: { quote: string; author
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1], delay: index * 0.08 }}
       whileHover={{ y: -6 }}
-      className="group relative rounded-xl border border-t-border-light p-6 md:p-8 transition-all duration-300 hover:border-t-accent/50 hover:shadow-[0_8px_40px_var(--t-glow)] overflow-hidden"
+      className="group relative rounded-xl border border-t-border-light p-6 md:p-8 transition-[border-color,box-shadow] duration-300 hover:border-t-accent/50 hover:shadow-[0_8px_40px_var(--t-glow)] overflow-hidden"
     >
       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-t-accent/5 via-transparent to-t-accent/3" />
 
@@ -130,7 +130,7 @@ export function Testimonials() {
   ]
 
   return (
-    <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
+    <section data-pattern="diag" className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto">
 
         <motion.div

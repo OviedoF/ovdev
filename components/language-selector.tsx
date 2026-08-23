@@ -21,6 +21,9 @@ export default function LanguageSelector() {
 
   const current = locales.find((l) => l.code === locale)!
 
+  // Un solo idioma activo: no tiene sentido mostrar el selector
+  if (locales.length <= 1) return null
+
   return (
     <div ref={ref} className="relative">
       <button

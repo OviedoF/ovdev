@@ -13,7 +13,7 @@ export default function FAQItem({ question, answer, isOpen: initialIsOpen = fals
   const [isOpen, setIsOpen] = useState(initialIsOpen)
 
   return (
-    <div className="border-t border-t-border py-2">
+    <div className="border-t border-t-border-light/50 py-2">
       {/* Botón */}
       <button 
         onClick={() => setIsOpen(!isOpen)}

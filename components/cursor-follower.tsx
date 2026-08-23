@@ -1,75 +1,75 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
+/**
+ * Círculo que sigue al mouse con un poco de inercia.
+ * Todo por refs + transform: cero re-renders de React y cero layout por frame.
+ * El loop se duerme cuando el círculo alcanzó al mouse.
+ */
 export default function CursorFollower() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [circlePosition, setCirclePosition] = useState({ x: 0, y: 0 })
-  const [isVisible, setIsVisible] = useState(false)
-  const rafRef = useRef<number>()
-
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    setIsTouchDevice(isTouch)
-    if (isTouch) return
+    const el = ref.current
+    if (isTouch || !el) return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-      if (!isVisible) setIsVisible(true)
+    let tx = 0
+    let ty = 0
+    let cx = 0
+    let cy = 0
+    let visible = false
+    let raf = 0
+    let running = false
+
+    const loop = () => {
+      cx += (tx - cx) * 0.15
+      cy += (ty - cy) * 0.15
+      el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`
+      if (Math.abs(tx - cx) < 0.1 && Math.abs(ty - cy) < 0.1) {
+        running = false
+        return
+      }
+      raf = requestAnimationFrame(loop)
     }
-
-    const handleMouseLeave = () => {
-      setIsVisible(false)
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    document.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('mouseleave', handleMouseLeave)
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current)
+    const wake = () => {
+      if (!running) {
+        running = true
+        raf = requestAnimationFrame(loop)
       }
     }
-  }, [isVisible])
-
-  useEffect(() => {
-    if (isTouchDevice) return
-
-    const lerp = (start: number, end: number, factor: number) => {
-      return start + (end - start) * factor
-    }
-
-    const animate = () => {
-      setCirclePosition((prev) => ({
-        x: lerp(prev.x, mousePosition.x, 0.15),
-        y: lerp(prev.y, mousePosition.y, 0.15),
-      }))
-      rafRef.current = requestAnimationFrame(animate)
-    }
-
-    rafRef.current = requestAnimationFrame(animate)
-
-    return () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current)
+    const onMove = (e: MouseEvent) => {
+      tx = e.clientX
+      ty = e.clientY
+      if (!visible) {
+        visible = true
+        cx = tx
+        cy = ty
+        el.style.opacity = '1'
       }
+      wake()
     }
-  }, [mousePosition, isTouchDevice])
+    const onLeave = () => {
+      visible = false
+      el.style.opacity = '0'
+    }
 
-  if (isTouchDevice) return null
+    window.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseleave', onLeave)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseleave', onLeave)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
 
   return (
     <div
-      className="pointer-events-none fixed z-[9999] transition-opacity duration-300"
-      style={{
-        left: `${circlePosition.x}px`,
-        top: `${circlePosition.y}px`,
-        opacity: isVisible ? 1 : 0,
-      }}
+      ref={ref}
+      aria-hidden
+      className="pointer-events-none fixed left-0 top-0 z-[9999] opacity-0 transition-opacity duration-300 hidden md:block"
+      style={{ willChange: 'transform' }}
     >
       <div className="relative -translate-x-1/2 -translate-y-1/2">
         <div className="h-6 w-6 rounded-full border-2 border-t-cursor" />

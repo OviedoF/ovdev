@@ -3,10 +3,14 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTheme, themes, type Theme } from '@/lib/theme'
+import { useTheme, themes, themeThumbUrl, type Theme } from '@/lib/theme'
+import ThemeVideo from '@/components/theme-video'
+import { useTranslation } from '@/lib/i18n'
+import { stopScroll, startScroll } from '@/components/smooth-scroll'
 
-export default function ThemeSelector() {
+export default function ThemeSelector({ variant = 'dot' }: { variant?: 'dot' | 'rail' }) {
   const { theme, setTheme, selectorOpen: open, openSelector, closeSelector } = useTheme()
+  const { t: tr } = useTranslation()
   const [mounted, setMounted] = useState(false)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
 
@@ -16,13 +20,16 @@ export default function ThemeSelector() {
 
   useEffect(() => {
     if (open) {
+      stopScroll()
       document.body.style.overflow = 'hidden'
       document.body.classList.add('theme-modal-open')
     } else {
+      startScroll()
       document.body.style.overflow = ''
       document.body.classList.remove('theme-modal-open')
     }
     return () => {
+      startScroll()
       document.body.style.overflow = ''
       document.body.classList.remove('theme-modal-open')
     }
@@ -40,7 +47,9 @@ export default function ThemeSelector() {
           transition={{ duration: 0.3 }}
           className="fixed inset-0 flex flex-col items-center justify-center"
           style={{ zIndex: 999999, backgroundColor: 'var(--t-overlay)' }}
-          onClick={(e) => { if (e.target === e.currentTarget) closeSelector() }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeSelector()
+          }}
         >
           <AnimatePresence mode="wait">
             {hoveredIdx !== null && (
@@ -52,11 +61,7 @@ export default function ThemeSelector() {
                 transition={{ duration: 0.4 }}
                 className="absolute inset-0 pointer-events-none"
               >
-                <img
-                  src={themes[hoveredIdx].gifUrl}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
+                <ThemeVideo theme={themes[hoveredIdx]} posterWidth={1280} className="w-full h-full object-cover" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -68,10 +73,10 @@ export default function ThemeSelector() {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="text-center mb-6 relative z-10"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-t-text">Choose a theme</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-t-text">{tr('theme.title')}</h2>
           </motion.div>
 
-          <div className="theme-scrollbar relative z-10 w-[90%] max-w-[1200px] grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-h-[65vh] overflow-y-auto px-1">
+          <div data-lenis-prevent className="theme-scrollbar relative z-10 w-[90%] max-w-[1200px] grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-h-[65vh] overflow-y-auto px-1">
             {themes.map((t, i) => {
               const isActive = theme === t.code
               return (
@@ -92,14 +97,14 @@ export default function ThemeSelector() {
                   <div
                     className="relative w-full aspect-[3/4] rounded-xl overflow-hidden transition-all duration-300"
                     style={{
-                      boxShadow: isActive
-                        ? `0 0 0 3px ${t.accent}, 0 8px 30px ${t.accent}40`
-                        : '0 4px 20px rgba(0,0,0,0.3)',
+                      boxShadow: isActive ? `0 0 0 3px ${t.accent}, 0 8px 30px ${t.accent}40` : '0 4px 20px rgba(0,0,0,0.3)',
                     }}
                   >
                     <img
-                      src={t.gifUrl}
+                      src={themeThumbUrl(t, 480)}
                       alt={t.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
 
@@ -122,7 +127,7 @@ export default function ThemeSelector() {
                   <div className="text-center">
                     <p className="text-sm font-semibold leading-tight text-t-text">{t.name}</p>
                     <p className="text-[10px] opacity-50 mt-0.5 text-t-text">
-                      Art by {t.author}
+                      {tr('theme.artBy')} {t.author}
                     </p>
                   </div>
                 </motion.button>
@@ -137,7 +142,7 @@ export default function ThemeSelector() {
             onClick={() => closeSelector()}
             className="relative z-10 mt-5 px-6 py-2.5 rounded-full border border-t-border text-sm font-medium text-t-text hover:bg-t-btn-bg hover:text-t-btn-text transition-colors duration-300"
           >
-            Close
+            {tr('theme.close')}
           </motion.button>
         </motion.div>
       )}
@@ -146,16 +151,35 @@ export default function ThemeSelector() {
 
   return (
     <>
-      <button
-        onClick={() => openSelector()}
-        className="flex items-center gap-1.5 text-t-text text-sm font-medium tracking-wide hover:opacity-80 transition-opacity"
-        aria-label="Change theme"
-      >
-        <span
-          className="w-4 h-4 rounded-full border border-t-border"
-          style={{ backgroundColor: current.accent }}
-        />
-      </button>
+      {variant === 'rail' ? (
+        <button
+          onClick={() => openSelector()}
+          className="group relative grid place-items-center w-12 h-12 rounded-2xl text-t-text-secondary hover:text-t-text transition-colors"
+          aria-label={tr('theme.change')}
+        >
+          <span
+            className="relative block w-8 h-8 rounded-full overflow-hidden transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 group-hover:rotate-12"
+            style={{ boxShadow: `0 0 0 2px var(--t-bg), 0 0 0 4px ${current.accent}` }}
+          >
+            <img key={theme} src={themeThumbUrl(current, 96)} alt="" className="w-full h-full object-cover" />
+          </span>
+          <span
+            role="tooltip"
+            className="pointer-events-none absolute left-[calc(100%+14px)] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-t-card text-t-text border border-t-border-light/40 px-3 py-1.5 text-[11px] font-semibold tracking-[0.18em] opacity-0 -translate-x-2 transition-all duration-300 ease-[cubic-bezier(.16,1,.3,1)] group-hover:opacity-100 group-hover:translate-x-0 shadow-[0_10px_30px_-12px_rgba(0,0,0,.5)]"
+          >
+            {tr('theme.change').toUpperCase()}
+            <span className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-t-card border-l border-b border-t-border-light/40" />
+          </span>
+        </button>
+      ) : (
+        <button
+          onClick={() => openSelector()}
+          className="flex items-center gap-1.5 text-t-text text-sm font-medium tracking-wide hover:opacity-80 transition-opacity"
+          aria-label={tr('theme.change')}
+        >
+          <span className="w-4 h-4 rounded-full border border-t-border" style={{ backgroundColor: current.accent }} />
+        </button>
+      )}
 
       {mounted && createPortal(modal, document.body)}
     </>

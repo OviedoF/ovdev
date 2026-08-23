@@ -261,8 +261,14 @@
     @apply font-sans antialiased;
     background-color: var(--t-bg);
     color: var(--t-text);
+    /* Espacio para el rail de navegación (desktop) */
+    padding-left: var(--nav-w);
   }
 }
+
+/* Ancho del rail de navegación lateral: 0 en mobile (barra superior), fijo en md+ */
+:root { --nav-w: 0px; }
+@media (min-width: 768px) { :root { --nav-w: 92px; } }
 
 @media (pointer: fine) {
   a, button, input, textarea, select {
@@ -313,6 +319,12 @@
   scrollbar-width: thin;
   scrollbar-color: var(--t-accent) transparent;
 }
+
+/* Lenis (smooth scroll) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 @keyframes marquee-scroll {
   from { transform: translateX(0); }

@@ -152,3 +152,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 export function useTheme() {
   return useContext(ThemeContext)
 }
+
+/* ---------- Medios optimizados (Cloudinary) ----------
+ * Los GIFs originales pesan entre 0,5 y 8 MB y se decodifican en CPU. Cloudinary los
+ * sirve como video con sólo cambiar la extensión (≈50–100 KB) y los JPG admiten
+ * transformaciones (w_, q_auto, f_auto) para thumbnails livianos.
+ */
+export function themeVideoUrls(t: ThemeData) {
+  return { mp4: t.gifUrl.replace(/\.gif$/, '.mp4'), webm: t.gifUrl.replace(/\.gif$/, '.webm') }
+}
+export function themeThumbUrl(t: ThemeData, width = 400) {
+  return t.imageUrl.replace('/image/upload/', `/image/upload/w_${width},q_auto,f_auto/`)
+}

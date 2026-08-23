@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import TransitionLink from '@/components/transition-link'
 import Navigation from '@/components/navigation'
+import DeviceMockup from '@/components/device-mockup'
 import Footer from '@/components/footer'
 import { projects } from '@/lib/projects'
 import { useTranslation } from '@/lib/i18n'
@@ -99,7 +100,7 @@ function ImageSlider({ images, title }: { images: string[]; title: string }) {
                 : 'border-transparent opacity-50 hover:opacity-80'
             }`}
           >
-            <img src={img} alt={`${title} - ${i + 1}`} className="w-full h-full object-cover" />
+            <img src={img} alt={`${title} - ${i + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </button>
         ))}
       </div>
@@ -161,9 +162,7 @@ export default function ProjectDetailPage() {
     )
   }
 
-  const allImages = project.images.length > 0
-    ? [project.image, ...project.images]
-    : []
+  const extraImages = project.images
 
   return (
     <div className="min-h-screen">
@@ -236,13 +235,12 @@ export default function ProjectDetailPage() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
-          {allImages.length > 1 ? (
-            <ImageSlider images={allImages} title={project.title} />
-          ) : project.image ? (
-            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-t-card">
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+          {project.image && <DeviceMockup image={project.image} title={project.title} />}
+          {extraImages.length > 0 && (
+            <div className="mt-12 md:mt-16">
+              <ImageSlider images={extraImages} title={project.title} />
             </div>
-          ) : null}
+          )}
         </motion.div>
       </section>
 

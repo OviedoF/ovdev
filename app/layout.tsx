@@ -7,13 +7,14 @@ import { TransitionProvider } from '@/lib/transition-context'
 import TransitionOverlay from '@/components/transition-overlay'
 import { I18nProvider } from '@/lib/i18n'
 import { ThemeProvider } from '@/lib/theme'
+import SmoothScroll from '@/components/smooth-scroll'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'OvDev | Software y soluciones a medida',
-  description: 'Desarrollo de software personalizado, aplicaciones web y móviles, soluciones tecnológicas innovadoras para tu negocio.',
+  title: 'Federico Oviedo | Vos la idea, yo el resto',
+  description: 'Diseño, programo y publico tu sitio web, app móvil o sistema a medida. Y con un plan mensual me ocupo de que siga funcionando.',
   icons: {
     icon: [
       {
@@ -62,9 +63,11 @@ export default function RootLayout({
         <ThemeProvider>
           <I18nProvider>
             <TransitionProvider>
-              <CursorFollower />
-              <TransitionOverlay />
-              {children}
+              <SmoothScroll>
+                <CursorFollower />
+                <TransitionOverlay />
+                {children}
+              </SmoothScroll>
             </TransitionProvider>
           </I18nProvider>
         </ThemeProvider>

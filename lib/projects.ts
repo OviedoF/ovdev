@@ -22,7 +22,7 @@ export const projects: Project[] = [
     categories: 'App Móvil • React Native • Marketplace Pet',
     description:
       'Plataforma móvil que conecta a dueños de mascotas con servicios pet-friendly, adopción responsable y una comunidad comprometida con el bienestar animal. Ofrece dos perfiles diferenciados — usuario y empresa — cada uno con su propio flujo, navegación y funcionalidades.',
-    image: '/works/pender.png',
+    image: '/works/pender.webp',
     images: [],
     features: [
       {
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     categories: 'SaaS • ERP • Facturación Electrónica',
     description:
       'Plataforma web integral diseñada para empresas de construcción e ingeniería que necesitan centralizar y automatizar sus operaciones diarias. ERP completo con gestión de proyectos, RRHH, facturación electrónica, adquisiciones, inventario y prevención de riesgos, adaptado a normativa chilena.',
-    image: '/works/controleAI.png',
+    image: '/works/controleAI.webp',
     images: [],
     features: [
       {
@@ -146,10 +146,10 @@ export const projects: Project[] = [
     categories: 'Web App • App Móvil • Legal • IA • Firma Electrónica • Laravel',
     description:
       'Sistema integral de gestión para estudio jurídico con casos legales en 6 pestañas especializadas, gestión de clientes, presupuestos con flujo de aprobación, cobranzas, calendario integrado, 6 tipos de reportes, indexación de documentos con IA (OCR y resumen automático), firma electrónica con SignNow, integración con Google Drive y Google Calendar, panel Filament, app móvil y 3 roles diferenciados. Backend Laravel con 48 modelos y 88 endpoints.',
-    image: '/works/saucedo/principal.png',
+    image: '/works/saucedo/principal.webp',
     images: [
-      '/works/saucedo/1.jpeg',
-      '/works/saucedo/2.jpeg',
+      '/works/saucedo/1.webp',
+      '/works/saucedo/2.webp',
     ],
     features: [
       {
@@ -239,18 +239,18 @@ export const projects: Project[] = [
     categories: 'Web App • SaaS • E-commerce • QR • Mercado Pago • Redux',
     description:
       'Plataforma SaaS para crear tarjetas de presentación digitales personalizables y compartibles por link o QR. Editor visual con vista previa en tiempo real, redes sociales integradas, botones personalizados, vCard descargable, sistema de membresías con Mercado Pago, tienda de productos con carrito, panel de administración completo, estadísticas detalladas de interacciones (visitas, clics, descargas, tiempo en pantalla) y comunicación en tiempo real con Socket.IO.',
-    image: '/works/biznes/principal.png',
+    image: '/works/biznes/principal.webp',
     images: [
-      '/works/biznes/1.png',
-      '/works/biznes/2.png',
-      '/works/biznes/3.png',
-      '/works/biznes/4.png',
-      '/works/biznes/5.png',
-      '/works/biznes/6.png',
-      '/works/biznes/7.png',
-      '/works/biznes/8.png',
-      '/works/biznes/9.png',
-      '/works/biznes/10.png',
+      '/works/biznes/1.webp',
+      '/works/biznes/2.webp',
+      '/works/biznes/3.webp',
+      '/works/biznes/4.webp',
+      '/works/biznes/5.webp',
+      '/works/biznes/6.webp',
+      '/works/biznes/7.webp',
+      '/works/biznes/8.webp',
+      '/works/biznes/9.webp',
+      '/works/biznes/10.webp',
     ],
     features: [
       {
@@ -330,17 +330,17 @@ export const projects: Project[] = [
     categories: 'Web App • Educación • Programación Visual • Blockly',
     description:
       'Aplicación web interactiva para crear historias y presentaciones multimedia con programación visual. El usuario crea escenas con fondos, objetos arrastrables y redimensionables, textos con múltiples fuentes y estilos, música de fondo por escena, transiciones animadas y programa el comportamiento de los objetos usando bloques visuales (Blockly). Modo presentación a pantalla completa, exportación a PDF, guardado en servidor con miniatura automática, sistema de deshacer/rehacer, copiar y pegar, e interfaz bilingüe español/inglés.',
-    image: '/works/storybox/principal.png',
+    image: '/works/storybox/principal.webp',
     images: [
-      '/works/storybox/1.png',
-      '/works/storybox/2.png',
-      '/works/storybox/3.png',
-      '/works/storybox/4.png',
-      '/works/storybox/5.png',
-      '/works/storybox/6.png',
-      '/works/storybox/7.png',
-      '/works/storybox/8.png',
-      '/works/storybox/9.png',
+      '/works/storybox/1.webp',
+      '/works/storybox/2.webp',
+      '/works/storybox/3.webp',
+      '/works/storybox/4.webp',
+      '/works/storybox/5.webp',
+      '/works/storybox/6.webp',
+      '/works/storybox/7.webp',
+      '/works/storybox/8.webp',
+      '/works/storybox/9.webp',
     ],
     features: [
       {
@@ -423,11 +423,11 @@ export const projects: Project[] = [
     categories: 'Web App • RRHH • Facturación • Firmas Digitales',
     description:
       'Plataforma web para registro y control de horas trabajadas, gestión de proyectos y generación de reportes para una empresa de topografía. Jornadas con actividades, firmas digitales, aprobación de horas extras, reportes de nómina en PDF, facturación mensual con IVA y percepciones, calendario visual con estados, rotación de personal y monitoreo de horas no registradas. Moneda: USD.',
-    image: '/works/mdt/principal.png',
+    image: '/works/mdt/principal.webp',
     images: [
-      '/works/mdt/1.jpeg',
-      '/works/mdt/2.jpeg',
-      '/works/mdt/3.jpeg',
+      '/works/mdt/1.webp',
+      '/works/mdt/2.webp',
+      '/works/mdt/3.webp',
     ],
     features: [
       {
@@ -493,15 +493,15 @@ export const projects: Project[] = [
     categories: 'SaaS • Facturación AFIP • Odontograma • Mercado Pago',
     description:
       'Plataforma web tipo SaaS para odontólogos y clínicas dentales en Argentina. Gestión integral de pacientes, turnos con calendario interactivo, odontograma visual, presupuestos, facturación electrónica con ARCA/AFIP, obras sociales, documentos de consentimiento, suscripciones con Mercado Pago, notificaciones por email y WhatsApp, y respaldo de datos.',
-    image: '/works/dentaldigital/principal.png',
+    image: '/works/dentaldigital/principal.webp',
     images: [
-      '/works/dentaldigital/1.jpeg',
-      '/works/dentaldigital/2.jpeg',
-      '/works/dentaldigital/3.jpeg',
-      '/works/dentaldigital/4.jpeg',
-      '/works/dentaldigital/5.jpeg',
-      '/works/dentaldigital/6.jpeg',
-      '/works/dentaldigital/7.jpeg',
+      '/works/dentaldigital/1.webp',
+      '/works/dentaldigital/2.webp',
+      '/works/dentaldigital/3.webp',
+      '/works/dentaldigital/4.webp',
+      '/works/dentaldigital/5.webp',
+      '/works/dentaldigital/6.webp',
+      '/works/dentaldigital/7.webp',
     ],
     features: [
       {
@@ -569,13 +569,13 @@ export const projects: Project[] = [
     categories: 'E-commerce • Next.js • Mercado Pago • Cloudinary',
     description:
       'Tienda online completa para venta de ropa con estilo anime, asiático y de videojuegos. Catálogo con variantes por color y talle, filtros avanzados combinados, galería con zoom, tabla de talles, carrito de compras, historial, reseñas, SEO con sitemap automático y panel de administración para gestionar todo el catálogo. Originaria de Rafaela, Santa Fe, Argentina.',
-    image: '/works/fuku/principal.png',
+    image: '/works/fuku/principal.webp',
     images: [
-      '/works/fuku/1.jpeg',
-      '/works/fuku/2.jpeg',
-      '/works/fuku/3.jpeg',
-      '/works/fuku/4.jpeg',
-      '/works/fuku/5.jpeg',
+      '/works/fuku/1.webp',
+      '/works/fuku/2.webp',
+      '/works/fuku/3.webp',
+      '/works/fuku/4.webp',
+      '/works/fuku/5.webp',
     ],
     features: [
       {
@@ -644,7 +644,7 @@ export const projects: Project[] = [
     categories: 'App Móvil • React Native • Multi-Módulo',
     description:
       'Aplicación móvil multiplataforma para la gestión integral de servicios médicos y cirugías. Permite administrar servicios quirúrgicos con seguimiento de estados, gestionar técnicos, controlar ubicaciones y hospitales, registrar pagos, administrar expedientes de pacientes y recibir notificaciones. Incluye sistema de permisos por rol, geolocalización GPS, cámara integrada y generación de códigos QR.',
-    image: '/works/cap.png',
+    image: '/works/cap.webp',
     images: [],
     features: [
       {
@@ -707,14 +707,14 @@ export const projects: Project[] = [
     categories: 'Web App • E-commerce • WhatsApp Bot • Panel Admin',
     description:
       'Plataforma web completa para un servicio técnico de reparación de celulares en España. Incluye cotizador automático, sistema de órdenes con seguimiento, notificaciones por email y WhatsApp, gestión de mayoristas y panel de administración integral.',
-    image: '/works/blackphone/principal.png',
+    image: '/works/blackphone/principal.webp',
     images: [
-      '/works/blackphone/1.png',
-      '/works/blackphone/2.png',
-      '/works/blackphone/3.png',
-      '/works/blackphone/4.png',
-      '/works/blackphone/5.png',
-      '/works/blackphone/6.png',
+      '/works/blackphone/1.webp',
+      '/works/blackphone/2.webp',
+      '/works/blackphone/3.webp',
+      '/works/blackphone/4.webp',
+      '/works/blackphone/5.webp',
+      '/works/blackphone/6.webp',
     ],
     features: [
       {
@@ -780,13 +780,13 @@ export const projects: Project[] = [
     categories: 'Web App • Servicio Técnico • WhatsApp Bot • Next.js 14 • Mayoristas',
     description:
       'Plataforma web para un servicio técnico de reparación de celulares, tablets y dispositivos electrónicos en España. Cotizador automático con tabla de precios por modelo, avería y zona, sistema de órdenes con seguimiento por código de 5 dígitos, notificaciones automáticas por email y WhatsApp, gestión de mayoristas con aprobación y seguimiento, blog con editor enriquecido, y panel de administración con contenido 100% editable.',
-    image: '/works/citamovil/principal.png',
+    image: '/works/citamovil/principal.webp',
     images: [
-      '/works/citamovil/1.png',
-      '/works/citamovil/2.png',
-      '/works/citamovil/3.png',
-      '/works/citamovil/4.png',
-      '/works/citamovil/5.png',
+      '/works/citamovil/1.webp',
+      '/works/citamovil/2.webp',
+      '/works/citamovil/3.webp',
+      '/works/citamovil/4.webp',
+      '/works/citamovil/5.webp',
     ],
     features: [
       {
@@ -853,18 +853,18 @@ export const projects: Project[] = [
     categories: 'Web Institucional • CMS en Vivo • Blog • Next.js 14',
     description:
       'Sitio web institucional para CASEPE (Cámara de Empresas de Operaciones Petroleras Especiales), una asociación civil que nuclea a empresas de servicios petroleros en Argentina. Todo el contenido se edita directamente desde la web sin panel separado: textos, imágenes y secciones se modifican haciendo clic sobre ellos cuando el administrador está conectado.',
-    image: '/works/casepe/principal.png',
+    image: '/works/casepe/principal.webp',
     images: [
-      '/works/casepe/1.png',
-      '/works/casepe/2.png',
-      '/works/casepe/3.png',
-      '/works/casepe/4.png',
-      '/works/casepe/5.png',
-      '/works/casepe/6.png',
-      '/works/casepe/7.png',
-      '/works/casepe/8.png',
-      '/works/casepe/9.png',
-      '/works/casepe/10.png',
+      '/works/casepe/1.webp',
+      '/works/casepe/2.webp',
+      '/works/casepe/3.webp',
+      '/works/casepe/4.webp',
+      '/works/casepe/5.webp',
+      '/works/casepe/6.webp',
+      '/works/casepe/7.webp',
+      '/works/casepe/8.webp',
+      '/works/casepe/9.webp',
+      '/works/casepe/10.webp',
     ],
     features: [
       {
@@ -928,7 +928,7 @@ export const projects: Project[] = [
     categories: 'Web App • SaaS • Tarjetas Digitales • Roles',
     description:
       'Aplicación web para que las empresas gestionen de forma centralizada las tarjetas digitales de presentación de todos sus empleados, con control de roles, permisos, plantillas corporativas y estadísticas de uso.',
-    image: '/works/biznesempresa.png',
+    image: '/works/biznesempresa.webp',
     images: [],
     features: [
       {
@@ -994,12 +994,12 @@ export const projects: Project[] = [
     categories: 'E-commerce • Mercado Pago • Revendedores • CMS',
     description:
       'Tienda online completa para LIMCAL, empresa de productos de limpieza en Argentina. Registro con CUIT y aprobación manual de cuentas, catálogo con filtros, carrito con compra mínima por producto, pago con Mercado Pago, mapa de revendedores con Google Maps, seguimiento de pedidos con email, formulario de contacto con respuesta desde el panel y contenido 100% editable.',
-    image: '/works/limcal/principal.png',
+    image: '/works/limcal/principal.webp',
     images: [
-      '/works/limcal/1.png',
-      '/works/limcal/2.png',
-      '/works/limcal/3.png',
-      '/works/limcal/4.png',
+      '/works/limcal/1.webp',
+      '/works/limcal/2.webp',
+      '/works/limcal/3.webp',
+      '/works/limcal/4.webp',
     ],
     features: [
       {
@@ -1066,13 +1066,13 @@ export const projects: Project[] = [
     categories: 'Desktop App • Electron • Facturación AFIP • IndexedDB',
     description:
       'Aplicación de escritorio con Electron para la gestión comercial completa de LIMCAL. Productos con importación masiva desde Excel, ventas y compras, facturación electrónica con ARCA/AFIP (Factura A/B, Notas de Crédito), remitos, stock, materias primas, revendedores con comisiones y descuentos, libro IVA, estadísticas y backup. Base de datos local con IndexedDB. Reemplaza al antiguo sistema basado en FoxPro.',
-    image: '/works/limcalpos/principal.png',
+    image: '/works/limcalpos/principal.webp',
     images: [
-      '/works/limcalpos/1.jpeg',
-      '/works/limcalpos/2.jpeg',
-      '/works/limcalpos/3.jpeg',
-      '/works/limcalpos/4.jpeg',
-      '/works/limcalpos/5.jpeg',
+      '/works/limcalpos/1.webp',
+      '/works/limcalpos/2.webp',
+      '/works/limcalpos/3.webp',
+      '/works/limcalpos/4.webp',
+      '/works/limcalpos/5.webp',
     ],
     features: [
       {
@@ -1139,15 +1139,15 @@ export const projects: Project[] = [
     categories: 'SaaS • POS • Facturación AFIP • Código de Barras',
     description:
       'Plataforma web completa de gestión comercial para negocios y comercios en Argentina. Administración de productos con código de barras, registro de ventas y compras, clientes y proveedores, facturación electrónica con ARCA/AFIP, presupuestos, control de stock y materias primas, garantías y devoluciones (RMA), y estadísticas con gráficos interactivos. Incluye suscripciones con Mercado Pago.',
-    image: '/works/dentalpos/principal.png',
+    image: '/works/dentalpos/principal.webp',
     images: [
-      '/works/dentalpos/1.jpeg',
-      '/works/dentalpos/2.jpeg',
-      '/works/dentalpos/3.jpeg',
-      '/works/dentalpos/4.jpeg',
-      '/works/dentalpos/5.jpeg',
-      '/works/dentalpos/6.jpeg',
-      '/works/dentalpos/7.jpeg',
+      '/works/dentalpos/1.webp',
+      '/works/dentalpos/2.webp',
+      '/works/dentalpos/3.webp',
+      '/works/dentalpos/4.webp',
+      '/works/dentalpos/5.webp',
+      '/works/dentalpos/6.webp',
+      '/works/dentalpos/7.webp',
     ],
     features: [
       {
@@ -1215,12 +1215,12 @@ export const projects: Project[] = [
     categories: 'Web App • Deportes • Ranking • Next.js 15',
     description:
       'Plataforma web para la organización y seguimiento de torneos de pádel. Gestión de torneos con categorías, jugadores con clubes y puntos, partidos con resultados por sets, calendario de eventos, circuito por categoría, ranking filtrado por género y categoría, y búsqueda de jugadores. Panel de administración y panel de moderador para carga de resultados.',
-    image: '/works/padel/principal.png',
+    image: '/works/padel/principal.webp',
     images: [
-      '/works/padel/1.jpeg',
-      '/works/padel/2.jpeg',
-      '/works/padel/3.jpeg',
-      '/works/padel/4.jpeg',
+      '/works/padel/1.webp',
+      '/works/padel/2.webp',
+      '/works/padel/3.webp',
+      '/works/padel/4.webp',
     ],
     features: [
       {
@@ -1279,7 +1279,7 @@ export const projects: Project[] = [
     categories: 'Web App • Turismo • Panel Admin • Multilingüe',
     description:
       'Sitio web profesional para una empresa de guías turísticos en Granada, España, especializada en visitas guiadas a la Alhambra. Plataforma completa con exploración de circuitos, reservas, blog y traducción automática a 7 idiomas, con panel de administración para gestión autónoma del contenido.',
-    image: '/works/alhambra.png',
+    image: '/works/alhambra.webp',
     images: [],
     features: [
       {
@@ -1336,7 +1336,7 @@ export const projects: Project[] = [
     categories: 'App Móvil • RRHH • QR • Geolocalización • Google Maps',
     description:
       'Aplicación móvil multiplataforma para el control de asistencia de empleados. Registro de entrada y salida mediante código QR o geolocalización GPS, historial de asistencia con vista de mapa en Google Maps, solicitud de permisos e incidencias con adjuntos, soporte multiempresa, selfie para foto de perfil, roles diferenciados (empleado y supervisor) y navegación adaptable según el rol del usuario.',
-    image: '/works/konecta/principal.png',
+    image: '/works/konecta/principal.webp',
     images: [],
     features: [
       {
@@ -1407,10 +1407,10 @@ export const projects: Project[] = [
     categories: 'Web App • ERP • Facturación CFDI • Laravel 12 • SAT',
     description:
       'Sistema de gestión empresarial para el mercado mexicano con facturación electrónica CFDI 4.0. Pipeline de ventas completo (cotización → pedido → factura → pago → cobranza), emisión de comprobantes fiscales con certificados CSD, timbrado con PAC, validación de RFC contra lista negra del SAT, módulo de tesorería, políticas de contraseña con expiración y 4 tablas de auditoría. Backend Laravel 12 con 40+ modelos y 80+ endpoints documentados con Swagger.',
-    image: '/works/sdg/principal.png',
+    image: '/works/sdg/principal.webp',
     images: [
-      '/works/sdg/1.jpeg',
-      '/works/sdg/2.jpeg',
+      '/works/sdg/1.webp',
+      '/works/sdg/2.webp',
     ],
     features: [
       {
@@ -1488,7 +1488,7 @@ export const projects: Project[] = [
     categories: 'App Móvil • Fintech • Trading • Stripe • Zustand • React Query',
     description:
       'Aplicación móvil para compra y venta de señales de trading. Los traders publican señales con análisis técnico y los clientes se suscriben para recibirlas. Dos roles diferenciados, suscripciones recurrentes con Stripe, dashboard de rendimiento, exploración de traders con métricas de performance, gráficos estadísticos, navegación por tabs según rol, y validación con Zod. Stack moderno: React Native, Expo, TypeScript, Zustand y React Query.',
-    image: '/works/safetrade/principal.png',
+    image: '/works/safetrade/principal.webp',
     images: [],
     features: [
       {
@@ -1557,7 +1557,7 @@ export const projects: Project[] = [
     categories: 'Web App • Gaming • WebSocket • Redux • Firebase',
     description:
       'Plataforma de casino online con 5 juegos interactivos (Tragamonedas, Aviator, Blackjack, Ruleta y Hunt the Ace), apuestas en tiempo real con WebSocket, panel de administración con gráficos estadísticos, sistema de referidos con bonificación, programa de staking BFG, gestión de depósitos y retiros, CDN de imágenes con ImageKit, y autenticación segura con JWT y roles diferenciados.',
-    image: '/works/casino/principal.png',
+    image: '/works/casino/principal.webp',
     images: [],
     features: [
       {
@@ -1636,7 +1636,7 @@ export const projects: Project[] = [
     categories: 'App Móvil • Web Admin • Escaneo 3D • Stripe',
     description:
       'Sistema integral de podología con escaneo 3D de pies. Los podólogos escanean pies desde la app móvil, las fotos se procesan en modelos 3D con Metashape, y se crean proyectos de calzado ortopédico a medida. Pagos con Stripe en USD, almacenamiento en Google Drive, visualización 3D en el panel web, notificaciones por email y comunicación en tiempo real.',
-    image: '/works/4me/principal.png',
+    image: '/works/4me/principal.webp',
     images: [],
     features: [
       {
@@ -1708,7 +1708,7 @@ export const projects: Project[] = [
     categories: 'Web App • Eventos • Facturación AFIP • QR • Mercado Pago',
     description:
       'Plataforma web para la venta de entradas a eventos nocturnos y fiestas. Compra con Mercado Pago, tickets con código QR, facturación electrónica automática con AFIP, sistema de puntos canjeables, códigos de descuento, tipos de entrada con cupos, revendedores con estadísticas, escaneo QR en puerta y login con Google/Facebook. Cinco roles diferenciados.',
-    image: '/works/trewa/principal.png',
+    image: '/works/trewa/principal.webp',
     images: [],
     features: [
       {
@@ -1776,7 +1776,7 @@ export const projects: Project[] = [
     categories: 'Web App • Editor Visual • Drag & Drop • Login Social',
     description:
       'Plataforma web para crear diseños personalizados de impresión. El usuario elige una plantilla, accede al editor visual con drag & drop donde agrega textos con +15 fuentes, imágenes y elementos decorativos, posiciona cada elemento libremente y envía el diseño para impresión. Login con Google y Facebook, sistema de puntos, y panel de administración para gestionar plantillas y diseños recibidos.',
-    image: '/works/movilprint/principal.png',
+    image: '/works/movilprint/principal.webp',
     images: [],
     features: [
       {
@@ -1844,7 +1844,7 @@ export const projects: Project[] = [
     categories: 'Web 3D • App Móvil • Three.js • React Three Fiber • Stripe • Laravel',
     description:
       'Plataforma de memorial virtual para mascotas con un cementerio 3D completo. Más de 1.075 parcelas en 25+ filas, 3 estilos de tumba, 57 objetos 3D de tributo, nichos circulares y mausoleos. Cámara en primera persona con pointer lock en escritorio y joysticks táctiles en móvil, minimapa, rendering por distancia, perfiles de mascotas con galerías, memoriales colaborativos, marketplace de colaboradores y pagos con Stripe. App móvil con React Native y backend Laravel.',
-    image: '/works/goodbyefriend/principal.png',
+    image: '/works/goodbyefriend/principal.webp',
     images: [],
     features: [
       {
@@ -1926,7 +1926,7 @@ export const projects: Project[] = [
     categories: 'App Móvil • Deportes • Cálculo • React Native',
     description:
       'Aplicación móvil para calcular las puntuaciones de un juego de apuestas de golf entre 4 jugadores. Grilla interactiva de 18 hoyos × 4 jugadores con cálculo automático de puntos según reglas condicionales (empates previos, cantidad de marcados por hoyo). Precio por unidad configurable y resultados en pesos colombianos. Aplicación autocontenida sin backend ni base de datos.',
-    image: '/works/ellobito/principal.png',
+    image: '/works/ellobito/principal.webp',
     images: [],
     features: [
       {
@@ -1972,10 +1972,10 @@ export const projects: Project[] = [
     categories: 'Sitio Estático • HTML/CSS/JS • Bitcoin • Google Maps',
     description:
       'Sitio web para Casa de Nodominium, centro independiente de educación y cultura en Playa Las Tunas, La Unión, El Salvador. Eventos con slider táctil y lightboxes, información institucional, mapa interactivo de Google Maps, formulario de contacto con FormSubmit y donaciones en Bitcoin con código QR. Sitio completamente estático sin backend.',
-    image: '/works/nodominium/principal.png',
+    image: '/works/nodominium/principal.webp',
     images: [
-      '/works/nodominium/1.jpeg',
-      '/works/nodominium/2.jpeg',
+      '/works/nodominium/1.webp',
+      '/works/nodominium/2.webp',
     ],
     features: [
       {
@@ -2028,7 +2028,7 @@ export const projects: Project[] = [
     categories: 'Web App • Rifas • Mercado Pago • Referidos',
     description:
       'Plataforma web completa para la venta de tickets de rifas online. Los usuarios compran packs de tickets mediante Mercado Pago y reciben números asignados al azar con factura por email. Incluye sistema de referidos con puntos, carrito de compras, asignación manual de tickets, selección de ganador, moderadores, exportación a Excel y contenido 100% editable. Moneda: pesos colombianos (COP).',
-    image: '/works/julianwinners/principal.png',
+    image: '/works/julianwinners/principal.webp',
     images: [],
     features: [
       {

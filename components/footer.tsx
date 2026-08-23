@@ -35,7 +35,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="px-6 md:px-12 lg:px-20 py-12 md:py-16">
+    <footer data-pattern="none" className="px-6 md:px-12 lg:px-20 py-12 md:py-16">
       <div className="max-w-[1200px] mx-auto">
 
         <motion.div
@@ -57,7 +57,7 @@ export function Footer() {
           </motion.div>
 
           <motion.div variants={fade(0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <span className="text-xs uppercase tracking-widest text-t-text-tertiary mb-4 block font-semibold">Navigate</span>
+            <span className="text-xs uppercase tracking-widest text-t-text-tertiary mb-4 block font-semibold">{t('footer.navigate')}</span>
             <nav className="flex flex-col gap-2.5">
               {links.map((item, i) => (
                 <TransitionLink
@@ -78,7 +78,7 @@ export function Footer() {
             viewport={{ once: true }}
             className="flex flex-col"
           >
-            <span className="text-xs uppercase tracking-widest text-t-text-tertiary mb-4 block font-semibold">Connect</span>
+            <span className="text-xs uppercase tracking-widest text-t-text-tertiary mb-4 block font-semibold">{t('footer.connect')}</span>
             <div className="flex items-center gap-3 mb-6">
               {socials.map((s, i) => (
                 <a
