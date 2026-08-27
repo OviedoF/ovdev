@@ -8,6 +8,7 @@ import TransitionLink from '@/components/transition-link'
 import LanguageSelector from '@/components/language-selector'
 import ThemeSelector from '@/components/theme-selector'
 import ContactFab from '@/components/contact-fab'
+import { Logo } from '@/components/brand/logo'
 import { useTranslation } from '@/lib/i18n'
 
 type Item = { href: string; label: string; icon: LucideIcon }
@@ -65,13 +66,13 @@ export function Navigation() {
         <TransitionLink
           href="/"
           aria-label="Federico Oviedo — inicio"
-          className="group relative grid place-items-center w-11 h-11 rounded-2xl bg-t-btn-bg text-t-btn-text font-extrabold tracking-tight text-[15px] leading-none overflow-hidden"
+          className="group relative grid place-items-center w-11 h-11 rounded-2xl bg-t-btn-bg text-t-btn-text overflow-hidden"
         >
           <span className="absolute inset-0 grid place-items-center transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:-translate-y-full">
-            FO
+            <Logo className="w-6 h-6" />
           </span>
           <span className="absolute inset-0 grid place-items-center translate-y-full transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-y-0">
-            FO
+            <Logo className="w-6 h-6" />
           </span>
         </TransitionLink>
 
@@ -134,7 +135,7 @@ export function Navigation() {
           transition={{ duration: 0.6, ease: EASE, delay: 0.8 }}
           className="flex flex-col items-center gap-4"
         >
-          <LanguageSelector />
+          <LanguageSelector variant="rail" />
           <ThemeSelector variant="rail" />
         </motion.div>
       </motion.nav>
@@ -150,16 +151,16 @@ export function Navigation() {
         <TransitionLink
           href="/"
           aria-label="Federico Oviedo — inicio"
-          className="grid place-items-center w-10 h-10 rounded-xl bg-t-btn-bg text-t-btn-text font-extrabold text-sm"
+          className="grid place-items-center w-10 h-10 rounded-xl bg-t-btn-bg text-t-btn-text"
         >
-          FO
+          <Logo className="w-[22px] h-[22px]" />
         </TransitionLink>
         <div className="flex items-center gap-4">
           <ThemeSelector />
           <LanguageSelector />
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={mobileOpen ? t('nav.close') : t('nav.open')}
             aria-expanded={mobileOpen}
             className="relative grid place-items-center w-10 h-10 text-t-text"
           >

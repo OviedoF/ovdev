@@ -217,7 +217,9 @@ const ARTS = [ArtIdea, ArtDirection, ArtDesign, ArtShip]
  * un artefacto ilustrativo por paso. Fondo con grilla, glow del acento y el GIF del tema.
  */
 export default function HomeStory() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
+  // ja/zh no separan palabras con espacio
+  const sep = locale === 'ja' || locale === 'zh' ? '' : ' '
   const { theme } = useTheme()
   const current = themes.find((x) => x.code === theme) ?? themes[0]
   const ref = useRef<HTMLElement>(null)
@@ -390,7 +392,7 @@ export default function HomeStory() {
                   data-step
                   className="absolute inset-x-0 text-[clamp(1.6rem,3.6vw,3.4rem)] font-semibold leading-[1.12] tracking-[-0.02em] opacity-0 will-change-transform"
                 >
-                  {t(`home.story.${n}.pre`)} <span className="text-t-accent">{t(`home.story.${n}.word`)}</span>
+                  {t(`home.story.${n}.pre`)}{sep}<span className="text-t-accent">{t(`home.story.${n}.word`)}</span>
                   {t(`home.story.${n}.post`)}
                 </p>
               ))}

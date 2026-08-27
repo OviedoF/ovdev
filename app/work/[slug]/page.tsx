@@ -9,7 +9,7 @@ import DeviceMockup from '@/components/device-mockup'
 import Footer from '@/components/footer'
 import { projects } from '@/lib/projects'
 import { useTranslation } from '@/lib/i18n'
-import { getTranslatedProject, initProjectTranslations } from '@/lib/translations'
+import { useTranslatedProject } from '@/lib/translations'
 
 function ImageSlider({ images, title }: { images: string[]; title: string }) {
   const [current, setCurrent] = useState(0)
@@ -111,21 +111,9 @@ function ImageSlider({ images, title }: { images: string[]; title: string }) {
 export default function ProjectDetailPage() {
   const params = useParams()
   const slug = params.slug as string
-  const { t, locale } = useTranslation()
-  const [ready, setReady] = useState(locale === 'es')
-
-  useEffect(() => {
-    if (locale !== 'es') {
-      initProjectTranslations()
-      const timer = setTimeout(() => setReady(true), 100)
-      return () => clearTimeout(timer)
-    } else {
-      setReady(true)
-    }
-  }, [locale])
-
+  const { t } = useTranslation()
   const baseProject = projects.find((p) => p.slug === slug)
-  const project = baseProject ? getTranslatedProject(baseProject, locale) : null
+  const project = useTranslatedProject(baseProject)
 
   const [titleVisible, setTitleVisible] = useState(false)
 

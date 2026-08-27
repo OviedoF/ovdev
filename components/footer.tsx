@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import TransitionLink from '@/components/transition-link'
+import { Wordmark } from '@/components/brand/logo'
 import { useTranslation } from "@/lib/i18n"
 
 const fade = (delay = 0) => ({
@@ -48,7 +49,7 @@ export function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr] gap-10 md:gap-8 mb-12">
           <motion.div variants={fade(0)} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            <span className="text-lg font-bold tracking-wider block mb-3">OVIEDO FEDERICO</span>
+            <Wordmark className="mb-4" />
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               <span className="text-xs text-t-text-tertiary">{t('footer.available')}</span>

@@ -14,21 +14,11 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'Federico Oviedo | Vos la idea, yo el resto',
-  description: 'Diseño, programo y publico tu sitio web, app móvil o sistema a medida. Y con un plan mensual me ocupo de que siga funcionando.',
+  description: 'Hago sitios web, apps y sistemas a medida: diseño, programación y publicación. Con el plan mensual también me encargo de que sigan funcionando.',
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: '/apple-icon.png',
   },

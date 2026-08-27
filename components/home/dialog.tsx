@@ -204,7 +204,6 @@ export default function HomeDialog() {
                         ].join(' ')}
                       >
                         {t(line.key)}
-                        {big && <span className="ml-2 inline-block align-middle">🚀</span>}
                       </p>
                       <span className="flex items-center gap-1 px-1 text-[10px] text-t-text-tertiary tabular-nums">
                         {line.time}

@@ -2,10 +2,10 @@ import type { ProjectI18n } from './types'
 
 export const pt: Record<string, ProjectI18n> = {
   'cap-medical': {
-    subtitle: 'Aplicativo Movel de Gestao de Servicos Medicos e Cirurgias',
+    subtitle: 'App mobile para gerenciar serviços médicos e cirurgias',
     categories: 'App Movel • React Native • Multi-Modulo',
     description:
-      'Aplicativo movel multiplataforma para a gestao integral de servicos medicos e cirurgias. Permite administrar servicos cirurgicos com acompanhamento de status, gerenciar tecnicos, controlar localizacoes e hospitais, registrar pagamentos, administrar prontuarios de pacientes e receber notificacoes. Inclui sistema de permissoes por funcao, geolocalizacao GPS, camera integrada e geracao de codigos QR.',
+      'App mobile para uma empresa que administra serviços cirúrgicos. Pelo celular se criam serviços em três etapas, se acompanha o status, se registram movimentações com localização GPS e anexos, e se lançam pagamentos e contra recibos. Também tem diretório de técnicos, hospitais e centros médicos, prontuários de pacientes e notificações. As permissões dependem da função de cada usuário.',
     features: [
       {
         title: 'Gestao de Servicos',
@@ -41,19 +41,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Graficos e visualizacao de dados',
     ],
     highlights: [
-      'Sistema de permissoes granular por funcao',
-      'Criacao de servicos em 3 etapas com catalogos dinamicos',
-      '10 telas especializadas por servico',
-      'Movimentacoes com geolocalizacao GPS automatica',
-      'Auditoria completa de todas as alteracoes',
-      'TypeScript completo em toda a aplicacao',
+      'Permissões por função',
+      'Cadastro de serviços em 3 etapas com catálogos dinâmicos',
+      '10 telas para cada serviço',
+      'Movimentações com localização GPS automática',
+      'Histórico de todas as alterações',
+      'Todo o app em TypeScript',
     ],
   },
   'petnder': {
-    subtitle: 'Plataforma Movel Pet-Friendly com Adocao e Comunidade',
+    subtitle: 'App para donos de pets, com adoção e serviços por perto',
     categories: 'App Movel • React Native • Marketplace Pet',
     description:
-      'Plataforma movel que conecta donos de animais de estimacao com servicos pet-friendly, adocao responsavel e uma comunidade comprometida com o bem-estar animal. Oferece dois perfis diferenciados — usuario e empresa — cada um com seu proprio fluxo, navegacao e funcionalidades.',
+      'É um app mobile para quem tem pet. Dá para buscar serviços pet-friendly por categoria, adotar animais com filtros e chat, e reportar pets perdidos com localização. As empresas entram com outro perfil, com navegação própria, para cadastrar serviços com mapa e horários, criar cupons com QR e ver estatísticas. Tem chat em tempo real, notificações push e comunidades com funções e moderação.',
     features: [
       {
         title: 'Para Usuarios',
@@ -90,19 +90,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Estatisticas de negocio e desempenho',
     ],
     highlights: [
-      'Dois perfis diferenciados (usuario e empresa)',
-      'Sistema de adocao com chat integrado',
-      'Comunidades com funcoes e moderacao de conteudo',
-      'Carteira digital e estatisticas financeiras',
-      'Gamificacao com sistema de conquistas',
-      'Onboarding animado interativo',
+      'Dois perfis separados, um para usuários e outro para empresas',
+      'Adoção com filtros e chat entre as partes',
+      'Comunidades com funções e moderação de conteúdo',
+      'Carteira digital com saldo e histórico para empresas',
+      'Conquistas para gamificar o uso',
+      'Onboarding animado com Reanimated',
     ],
   },
   'controla2': {
-    subtitle: 'Sistema de Gestao Empresarial (ERP)',
+    subtitle: 'ERP para empresas de construção e engenharia no Chile',
     categories: 'SaaS • ERP • Faturamento Eletronico',
     description:
-      'Plataforma web integral projetada para empresas de construcao e engenharia que precisam centralizar e automatizar suas operacoes diarias. ERP completo com gestao de projetos, RH, faturamento eletronico, aquisicoes, estoque e prevencao de riscos, adaptado a legislacao chilena.',
+      'É um ERP web pensado para construtoras e empresas de engenharia que querem ter tudo num lugar só. Cobre projetos com orçamentos e Gantt, RH com cálculo de folha, faturamento eletrônico, compras, estoque e prevenção de riscos. Está adaptado à legislação chilena (AFP, ISAPRE, DTE, RUT) e tem oito funções com fluxos de aprovação.',
     features: [
       {
         title: 'Projetos e Planejamento',
@@ -135,19 +135,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Alertas em fluxos de aprovacao',
     ],
     highlights: [
-      'Dashboard em tempo real com metricas e KPIs',
-      'Geracao automatica de documentos (PDF, Excel, CSV)',
-      '8 funcoes predefinidas com fluxos de aprovacao',
-      'Adaptado a legislacao chilena (AFP, ISAPRE, DTE, RUT)',
-      'Modulo SSOMA de prevencao de riscos',
-      'Notificacoes instantaneas para aprovacoes',
+      'Dashboard com métricas em tempo real',
+      'Gera PDF, Excel e CSV automaticamente',
+      '8 funções predefinidas com fluxos de aprovação',
+      'Adaptado à legislação chilena (AFP, ISAPRE, DTE, RUT)',
+      'Módulo SSOMA para prevenção de riscos',
+      'Aviso na hora quando tem algo para aprovar',
     ],
   },
   'alhambra': {
-    subtitle: 'Site de Turismo para Granada, Espanha',
+    subtitle: 'Site para guias turísticos da Alhambra, em 7 idiomas',
     categories: 'Web App • Turismo • Painel Admin • Multilingue',
     description:
-      'Site profissional para uma empresa de guias turisticos em Granada, Espanha, especializada em visitas guiadas a Alhambra. Plataforma completa com exploracao de circuitos, reservas, blog e traducao automatica para 7 idiomas, com painel de administracao para gestao autonoma do conteudo.',
+      'Site para uma empresa de guias turísticos de Granada, Espanha, que faz visitas à Alhambra. Cada circuito tem sua página, as reservas chegam por e-mail a partir de um formulário e tem contato direto por WhatsApp. É traduzido automaticamente para 7 idiomas. O dono gerencia circuitos e blog pelo painel, e edita os textos clicando neles na própria página.',
     features: [
       {
         title: 'Para o Visitante',
@@ -177,19 +177,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Integracao com o perfil do guia',
     ],
     highlights: [
-      'Conteudo 100% administravel sem ajuda tecnica',
-      'Edicao de textos inline diretamente na pagina',
-      'Renderizacao do lado do servidor (SSR) para SEO',
-      'Suporte para 7 idiomas voltado ao turismo internacional',
-      'Integracao com WhatsApp e e-mail para maximizar reservas',
-      'Seguranca com JWT, senhas criptografadas e funcoes',
+      'Todo o conteúdo é administrado sem ajuda técnica',
+      'Textos editáveis clicando na página',
+      'Renderização no servidor para SEO',
+      '7 idiomas para turismo internacional',
+      'Reservas por e-mail e contato por WhatsApp',
+      'JWT, senhas criptografadas e funções',
     ],
   },
   'biznes-empresa': {
-    subtitle: 'Plataforma de Gestao de Cartoes Digitais Corporativos',
+    subtitle: 'Cartões digitais para todos os funcionários de uma empresa',
     categories: 'Web App • SaaS • Cartoes Digitais • Funcoes',
     description:
-      'Aplicacao web para que empresas gerenciem de forma centralizada os cartoes digitais de apresentacao de todos os seus funcionarios, com controle de funcoes, permissoes, templates corporativos e estatisticas de uso.',
+      'Versão corporativa do Biznes. Uma empresa se cadastra com seu logo e branding, convida os funcionários por e-mail ou com um Excel, e monta cartões digitais para eles a partir de templates com a identidade da marca. Cada cartão tem seu QR, vCard e link próprio. As funções definem quem pode editar o quê, e as estatísticas de visitas, cliques e downloads aparecem todas juntas em gráficos.',
     features: [
       {
         title: 'Gestao Corporativa',
@@ -228,19 +228,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Otimizacao de imagens para WebP',
     ],
     highlights: [
-      'Gestao corporativa completa a partir de um unico painel',
-      'Templates com branding aplicados automaticamente',
-      'Funcoes e permissoes granulares por funcionario',
-      'Cadastro em massa de funcionarios por arquivo Excel',
-      'Estatisticas centralizadas com graficos interativos',
-      'Comunicacao em tempo real com WebSockets',
+      'Toda a gestão corporativa a partir de um único painel',
+      'Templates com a marca aplicados sozinhos',
+      'Funções e permissões por funcionário',
+      'Cadastro em massa de funcionários a partir de Excel',
+      'Estatísticas de todos os cartões em gráficos',
+      'Atualizações em tempo real com WebSockets',
     ],
   },
   'blackphone': {
-    subtitle: 'Sistema de Gestao de Reparos de Dispositivos Moveis',
+    subtitle: 'Site para uma assistência técnica de celulares na Espanha',
     categories: 'Web App • E-commerce • WhatsApp Bot • Painel Admin',
     description:
-      'Plataforma web completa para um servico tecnico de reparo de celulares na Espanha. Inclui cotador automatico, sistema de ordens com acompanhamento, notificacoes por e-mail e WhatsApp, gestao de atacadistas e painel de administracao integral.',
+      'Site e sistema de gestão para uma assistência técnica de celulares na Espanha. O cliente escolhe modelo e defeitos, vê o preço na hora e depois acompanha o conserto com um código de 5 dígitos. Cada mudança de status chega por e-mail e WhatsApp. Tem um fluxo separado para atacadistas, com aprovação e pedidos em volume, e um painel para gerenciar preços, modelos, defeitos, status e o blog.',
     features: [
       {
         title: 'Para o Cliente',
@@ -279,19 +279,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Drag & drop para reordenar modelos',
     ],
     highlights: [
-      'Cotador inteligente por modelo, defeito e zona geografica',
-      'Notificacoes multicanal (e-mail + WhatsApp automatico)',
-      'Bot de WhatsApp integrado sem servicos externos pagos',
-      'Sistema de atacadistas com fluxo independente',
-      'Tabela de precos dinamica exportavel para PDF',
-      'Dados reais de provincias e cidades da Espanha',
+      'Cotação por modelo, defeito e zona',
+      'Avisos por e-mail e WhatsApp em cada mudança de status',
+      'Bot de WhatsApp próprio, sem serviços pagos',
+      'Atacadistas com fluxo de pedidos próprio',
+      'Tabela de preços editável e exportável para PDF',
+      'Províncias e cidades reais da Espanha',
     ],
   },
   'casepe': {
-    subtitle: 'Site Institucional da Camara de Operacoes Petroliferas',
+    subtitle: 'Site institucional de uma câmara petrolífera, editável ao vivo',
     categories: 'Web Institucional • CMS ao Vivo • Blog • Next.js 14',
     description:
-      'Site institucional para CASEPE (Camara de Empresas de Operacoes Petroliferas Especiais), uma associacao civil que reune empresas de servicos petroliferos na Argentina. Todo o conteudo e editado diretamente no site sem painel separado: textos, imagens e secoes sao modificados clicando sobre eles quando o administrador esta conectado.',
+      'Site para a CASEPE, a câmara que reúne empresas de operações petrolíferas especiais na Argentina. O diferente é que não tem um painel separado para o conteúdo. Quando o administrador está logado, ele clica em qualquer texto ou imagem da página e muda ali mesmo, e também pode adicionar ou tirar itens de cada seção. Tem blog de notícias com artigos relacionados e formulário de contato que chega por e-mail.',
     features: [
       {
         title: 'Para o Visitante',
@@ -328,19 +328,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Editor de texto enriquecido para conteudo inline',
     ],
     highlights: [
-      'Edicao ao vivo sem painel separado — tudo na mesma pagina',
-      'Propriedades aninhadas atualizaveis dinamicamente com Lodash',
-      'Secoes expansiveis: adicionar e remover itens direto no site',
-      'Blog com artigos relacionados e tags',
-      'E-mails de contato com template HTML profissional',
-      'Animacoes profissionais em todas as secoes',
+      'Edição ao vivo, sem painel separado',
+      'Propriedades aninhadas atualizáveis com Lodash',
+      'Seções onde se adicionam e removem itens pelo site',
+      'Blog com tags e artigos relacionados',
+      'E-mails de contato com template HTML',
+      'Animações ao rolar em todas as seções',
     ],
   },
   'dental-digital': {
-    subtitle: 'Sistema de Gestao para Clinicas Odontologicas (SaaS)',
+    subtitle: 'Sistema de gestão para clínicas odontológicas, com faturamento AFIP',
     categories: 'SaaS • Faturamento AFIP • Odontograma • Mercado Pago',
     description:
-      'Plataforma web tipo SaaS para dentistas e clinicas odontologicas na Argentina. Gestao integral de pacientes, consultas com calendario interativo, odontograma visual, orcamentos, faturamento eletronico com ARCA/AFIP, convenios, documentos de consentimento, assinaturas com Mercado Pago, notificacoes por e-mail e WhatsApp, e backup de dados.',
+      'É um SaaS para dentistas e clínicas da Argentina. Tem fichas de pacientes com convênio, consultas num calendário, odontograma por dente, orçamentos que viram fatura e consentimentos com assinatura digital. Emite fatura eletrônica com ARCA/AFIP (A, B e C, com notas de crédito e débito) e manda o PDF por e-mail ou WhatsApp. As assinaturas são cobradas com Mercado Pago e cada clínica pode ter vários profissionais com funções.',
     features: [
       {
         title: 'Gestao Clinica',
@@ -381,19 +381,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Exportacao de odontograma para PDF',
     ],
     highlights: [
-      'Faturamento eletronico real com ARCA/AFIP e CAE valido',
-      'Geracao de certificados RSA/CSR para vincular com AFIP',
-      'Odontograma interativo com registro por dente e exportacao PDF',
-      'Assinaturas com Mercado Pago e webhooks automaticos',
-      'Multiusuario com funcoes (proprietario, profissional, administrador)',
-      'Backup completo em JSON com restauracao inteligente',
+      'Fatura eletrônica com ARCA/AFIP e CAE',
+      'Gera os certificados RSA e CSR para vincular com a AFIP',
+      'Odontograma por dente com exportação para PDF',
+      'Assinaturas com Mercado Pago e webhooks',
+      'Vários usuários por clínica com funções de dono, profissional e administrador',
+      'Backup completo em JSON com restauração',
     ],
   },
   'sunchales-pos': {
-    subtitle: 'Sistema de Gestao Comercial e Ponto de Venda',
+    subtitle: 'Gestão comercial e ponto de venda com faturamento AFIP',
     categories: 'SaaS • POS • Faturamento AFIP • Codigo de Barras',
     description:
-      'Plataforma web completa de gestao comercial para negocios e comercios na Argentina. Administracao de produtos com codigo de barras, registro de vendas e compras, clientes e fornecedores, faturamento eletronico com ARCA/AFIP, orcamentos, controle de estoque e materias-primas, garantias e devolucoes (RMA), e estatisticas com graficos interativos. Inclui assinaturas com Mercado Pago.',
+      'Sistema web de gestão comercial para negócios da Argentina. Você cadastra produtos com código de barras, registra vendas e compras, e controla o estoque e as matérias-primas. Emite fatura eletrônica com ARCA/AFIP, converte orçamentos em vendas e cuida de garantias e devoluções. O acesso é cobrado por assinatura com Mercado Pago.',
     features: [
       {
         title: 'Vendas e Faturamento',
@@ -434,19 +434,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Geracao de PDFs de faturas e orcamentos',
     ],
     highlights: [
-      'Ciclo comercial completo: compras, estoque, vendas, faturamento e relatorios',
-      'Faturamento eletronico real com ARCA/AFIP e CAE valido',
-      'Codigo de barras com geracao visual e leitura rapida',
-      'Sistema de RMA para garantias e devolucoes com acompanhamento',
-      'Orcamentos conversiveis diretamente em vendas',
-      'SMTP personalizavel por usuario para envio de faturas',
+      'Compras, estoque, vendas, faturamento e relatórios num lugar só',
+      'Fatura eletrônica com ARCA/AFIP e CAE',
+      'Códigos de barras gerados e lidos pelo sistema',
+      'Garantias e devoluções (RMA) com acompanhamento',
+      'Orçamentos que viram vendas',
+      'SMTP configurável por usuário para enviar faturas',
     ],
   },
   'fuku-shop': {
-    subtitle: 'Loja Online de Roupas Urbanas e Anime',
+    subtitle: 'Loja online de roupas anime e urbanas, de Rafaela',
     categories: 'E-commerce • Next.js • Mercado Pago • Cloudinary',
     description:
-      'Loja online completa para venda de roupas com estilo anime, asiatico e de videogames. Catalogo com variantes por cor e tamanho, filtros avancados combinados, galeria com zoom, tabela de tamanhos, carrinho de compras, historico, avaliacoes, SEO com sitemap automatico e painel de administracao para gerenciar todo o catalogo. Originaria de Rafaela, Santa Fe, Argentina.',
+      'Loja online para uma marca de roupas de Rafaela, Santa Fe, com estilo anime, asiático e de videogames. Cada produto tem variantes por cor com fotos próprias, tabela de tamanhos com medidas reais e zoom na galeria. Dá para filtrar por categoria, tipo, cor, tamanho e preço, pagar com Mercado Pago, e o usuário tem histórico, endereços e avaliações. O painel permite cadastrar todo o catálogo.',
     features: [
       {
         title: 'Loja Online',
@@ -488,19 +488,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Geracao automatica de sitemap XML para SEO',
     ],
     highlights: [
-      'Variantes de produto com imagens independentes por cor',
-      'Filtros combinados para buscas precisas no catalogo',
-      'Geracao estatica (SSG) com revalidacao incremental para SEO',
-      'Sitemap XML gerado automaticamente com prioridades por secao',
-      'Imagens no Cloudinary para otimizacao e carregamento rapido',
-      'Categorias hierarquicas com subcategorias e subtipos',
+      'Variantes por cor com fotos independentes',
+      'Filtros combinados por categoria, tipo, cor, tamanho e preço',
+      'Geração estática com revalidação incremental para SEO',
+      'Sitemap XML gerado automaticamente',
+      'Imagens no Cloudinary',
+      'Categorias com subcategorias, tipos e subtipos',
     ],
   },
   'julian-winners': {
-    subtitle: 'Plataforma de Rifas Online com Tickets Digitais',
+    subtitle: 'Rifas online com tickets digitais e pagamento pelo Mercado Pago',
     categories: 'Web App • Rifas • Mercado Pago • Indicacoes',
     description:
-      'Plataforma web completa para a venda de tickets de rifas online. Os usuarios compram pacotes de tickets mediante Mercado Pago e recebem numeros atribuidos aleatoriamente com fatura por e-mail. Inclui sistema de indicacoes com pontos, carrinho de compras, atribuicao manual de tickets, selecao de ganhador, moderadores, exportacao para Excel e conteudo 100% editavel. Moeda: pesos colombianos (COP).',
+      'Plataforma para vender tickets de rifas online na Colômbia. O usuário compra pacotes de tickets com Mercado Pago, recebe números aleatórios sem repetição e a fatura em PDF chega por e-mail. Tem carrinho para várias rifas, indicações com pontos, moderadores que atribuem tickets manualmente para vendas presenciais e uma ferramenta para escolher o ganhador pelo número. Os textos, imagens e até as credenciais do Mercado Pago e do SMTP são configurados pelo painel.',
     features: [
       {
         title: 'Para o Usuario',
@@ -539,19 +539,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Estado global (carrinho, usuario, rifas)',
     ],
     highlights: [
-      'Tickets aleatorios sem repeticoes com formato segundo total da rifa',
-      'Webhooks de Mercado Pago com verificacao anti-duplicados',
-      'Atribuicao manual por moderadores para vendas presenciais',
-      'Selecao de ganhador por numero de ticket',
-      'Exportacao completa para Excel (usuarios, compras, faturas)',
-      'Tres funcoes diferenciadas (usuario, moderador, administrador)',
+      'Tickets aleatórios sem repetição, com formato conforme o total da rifa',
+      'Webhooks do Mercado Pago com controle de duplicados',
+      'Atribuição manual por moderadores para vendas presenciais',
+      'Ganhador escolhido pelo número do ticket',
+      'Exportação para Excel de usuários, compras e faturas',
+      'Três funções: usuário, moderador e administrador',
     ],
   },
   'limcal': {
-    subtitle: 'Loja Online de Produtos de Limpeza',
+    subtitle: 'Loja online atacadista de produtos de limpeza',
     categories: 'E-commerce • Mercado Pago • Revendedores • CMS',
     description:
-      'Loja online completa para LIMCAL, empresa de produtos de limpeza na Argentina. Cadastro com CUIT e aprovacao manual de contas, catalogo com filtros, carrinho com compra minima por produto, pagamento com Mercado Pago, mapa de revendedores com Google Maps, acompanhamento de pedidos com e-mail, formulario de contato com resposta pelo painel e conteudo 100% editavel.',
+      'Loja online para a LIMCAL, uma empresa argentina de produtos de limpeza que vende para comércios. As contas são cadastradas com CUIT e alguém da equipe aprova antes de poder comprar. Cada produto tem uma compra mínima, o pagamento vai por Mercado Pago e o pedido é registrado sozinho com o webhook. Tem um mapa de revendedores com Google Maps filtrável por província e cidade, e o conteúdo do site é editado pelo painel.',
     features: [
       {
         title: 'Loja Online',
@@ -591,19 +591,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Animacoes de aparicao ao rolar a pagina',
     ],
     highlights: [
-      'Aprovacao manual de contas para controle de acesso',
-      'Compra minima por produto ideal para venda no atacado',
-      'Mapa de revendedores com Google Maps filtravel por zona',
-      'Resposta a mensagens de contato diretamente pelo painel',
-      'Conteudo editavel com propriedades aninhadas dinamicas',
-      'Webhooks de Mercado Pago com registro automatico de pedidos',
+      'Contas aprovadas manualmente antes de poder comprar',
+      'Compra mínima por produto, pensada para venda no atacado',
+      'Mapa de revendedores com Google Maps, filtrável por zona',
+      'Resposta às mensagens de contato pelo painel',
+      'Conteúdo editável com propriedades aninhadas',
+      'Pedidos registrados automaticamente com webhooks do Mercado Pago',
     ],
   },
   'limcal-pos': {
-    subtitle: 'Aplicativo Desktop de Gestao Comercial e Ponto de Venda',
+    subtitle: 'Sistema desktop de vendas e faturamento, com Electron',
     categories: 'Desktop App • Electron • Faturamento AFIP • IndexedDB',
     description:
-      'Aplicativo desktop com Electron para a gestao comercial completa da LIMCAL. Produtos com importacao em massa a partir de Excel, vendas e compras, faturamento eletronico com ARCA/AFIP (Fatura A/B, Notas de Credito), guias de remessa, estoque, materias-primas, revendedores com comissoes e descontos, livro IVA, estatisticas e backup. Banco de dados local com IndexedDB. Substitui o antigo sistema baseado em FoxPro.',
+      'Programa desktop para a gestão comercial da LIMCAL, que substituiu um sistema antigo em FoxPro. Gerencia produtos, vendas, compras, estoque, matérias-primas e revendedores com comissão ou desconto. Emite fatura A e B com ARCA/AFIP, notas de crédito, guias de remessa em PDF e livro IVA. O banco de dados é local com IndexedDB, então funciona sem servidor nem conexão.',
     features: [
       {
         title: 'Vendas e Faturamento',
@@ -643,19 +643,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Download de backups, PDFs e arquivos Excel',
     ],
     highlights: [
-      'App desktop com Electron — funciona offline sem servidor',
-      'Banco de dados local com IndexedDB no navegador do Electron',
-      'Faturamento eletronico real com AFIP (Fatura A/B, NC A/B)',
-      'Revendedores com desconto ou comissao aplicados ao faturar',
-      'Importacao em massa de produtos e alteracao de precos em massa a partir de Excel',
-      'Migracao completa de FoxPro (Husky POS) para tecnologia moderna',
+      'App desktop com Electron, funciona sem conexão',
+      'Banco de dados local com IndexedDB',
+      'Fatura A e B e notas de crédito com AFIP',
+      'Desconto ou comissão por revendedor aplicados ao faturar',
+      'Importação de produtos e alteração de preços em massa a partir de Excel',
+      'Migração de dados do FoxPro (Husky POS)',
     ],
   },
   'movilprint': {
-    subtitle: 'Plataforma de Design e Impressao Personalizada',
+    subtitle: 'Editor online de designs para mandar imprimir',
     categories: 'Web App • Editor Visual • Drag & Drop • Login Social',
     description:
-      'Plataforma web para criar designs personalizados de impressao. O usuario escolhe um template, acessa o editor visual com drag & drop onde adiciona textos com +15 fontes, imagens e elementos decorativos, posiciona cada elemento livremente e envia o design para impressao. Login com Google e Facebook, sistema de pontos, e painel de administracao para gerenciar templates e designs recebidos.',
+      'Site para montar designs personalizados e mandar imprimir. O usuário escolhe um template e entra num editor onde arrasta textos com mais de 15 fontes, imagens e elementos decorativos, redimensiona, gira e organiza em camadas. Quando termina, envia o design e ele fica salvo na conta. Tem login com Google e Facebook, pontos de fidelidade e um painel para gerenciar templates e revisar os designs que chegam.',
     features: [
       {
         title: 'Editor Visual',
@@ -696,19 +696,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Arrastar e soltar elementos no editor',
     ],
     highlights: [
-      'Editor visual completo com tela interativa e drag & drop',
-      'Templates dinamicos com dimensoes em cm e recursos proprios',
-      '+15 fontes tipograficas com controle completo de estilos',
-      'Sistema de camadas para controlar profundidade dos elementos',
-      'Login social com Google e Facebook',
-      'Designs persistentes com todos os elementos salvos no banco',
+      'Editor com tela interativa e drag and drop',
+      'Templates com dimensões em cm e recursos próprios',
+      'Mais de 15 fontes com controle de estilos',
+      'Camadas para organizar a profundidade dos elementos',
+      'Login com Google e Facebook',
+      'Designs salvos no banco de dados com todos os elementos',
     ],
   },
   'padel': {
-    subtitle: 'Plataforma de Gestao de Torneios de Padel',
+    subtitle: 'Torneios, resultados e ranking de padel',
     categories: 'Web App • Esportes • Ranking • Next.js 15',
     description:
-      'Plataforma web para a organizacao e acompanhamento de torneios de padel. Gestao de torneios com categorias, jogadores com clubes e pontos, partidas com resultados por sets, calendario de eventos, circuito por categoria, ranking filtrado por genero e categoria, e busca de jogadores. Painel de administracao e painel de moderador para insercao de resultados.',
+      'Site para organizar e acompanhar torneios de padel. O público vê o calendário de torneios, o circuito por categoria, os resultados partida por partida com sets e o ranking por gênero e categoria. Também pode buscar um jogador e ver a posição dele. Um moderador cadastra as partidas e os resultados, e o administrador gerencia torneios, jogadores, clubes e categorias.',
     features: [
       {
         title: 'Para o Publico',
@@ -740,19 +740,19 @@ export const pt: Record<string, ProjectI18n> = {
     ],
     integrationUses: [],
     highlights: [
-      'Circuito de torneios organizado automaticamente por categoria',
-      'Ranking dinamico em tempo real por categoria e genero',
-      'Partidas individuais e por equipes com resultados por sets',
-      'Status automatico do torneio conforme partidas inseridas',
-      'Tres niveis de acesso (publico, moderador, administrador)',
-      'Exclusao logica em categorias para restauracao',
+      'Circuito montado automaticamente por categoria',
+      'Ranking por categoria e gênero que se atualiza sozinho',
+      'Partidas individuais e por equipes com resultado por sets',
+      'O status do torneio muda conforme as partidas cadastradas',
+      'Três níveis de acesso: público, moderador e administrador',
+      'Categorias com exclusão lógica para poder restaurar',
     ],
   },
   '4me': {
-    subtitle: 'Plataforma de Podologia com Escaneamento 3D e Calcados Ortopedicos',
+    subtitle: 'Escaneamento 3D de pés e calçados ortopédicos sob medida',
     categories: 'App Movel • Web Admin • Escaneamento 3D • Stripe',
     description:
-      'Sistema integral de podologia com escaneamento 3D de pes. Os podologos escaneiam pes pelo app movel, as fotos sao processadas em modelos 3D com Metashape, e sao criados projetos de calcados ortopedicos sob medida. Pagamentos com Stripe em USD, armazenamento no Google Drive, visualizacao 3D no painel web, notificacoes por e-mail e comunicacao em tempo real.',
+      'Sistema para podólogos que fazem calçados ortopédicos sob medida. Pelo app mobile eles tiram fotos do pé de vários ângulos, que sobem para o Google Drive com progresso em tempo real, e um processo com Metashape transforma tudo num modelo 3D. Com esse modelo se monta um projeto escolhendo modelo, cor, sola e palmilha, que passa por 12 status com aviso por e-mail a cada mudança. O painel web mostra os pés em 3D e os pagamentos vão por Stripe em dólares.',
     features: [
       {
         title: 'App Movel (Podologo)',
@@ -793,19 +793,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Captura de fotos pelo app movel',
     ],
     highlights: [
-      'Escaneamento 3D de pes pelo celular com processamento Metashape',
-      'Upload em massa para Google Drive com progresso em tempo real',
-      'Visualizacao de modelos 3D (GLB) no navegador',
-      'Pipeline de 12 status com notificacao por e-mail em cada alteracao',
-      'Pagamentos com Stripe em USD com link automatico por projeto',
-      'Tres sistemas coordenados: app movel + painel web + servidor',
+      'Escaneamento 3D do pé pelo celular, processado com Metashape',
+      'Upload em massa para o Google Drive com progresso em tempo real',
+      'Modelos 3D (GLB) que abrem no navegador',
+      '12 status de projeto com e-mail a cada mudança',
+      'Link de pagamento do Stripe em USD por projeto',
+      'Três partes coordenadas: app mobile, painel web e servidor',
     ],
   },
   'trewa-club': {
-    subtitle: 'Plataforma de Venda de Ingressos para Eventos com Sistema de Pontos',
+    subtitle: 'Venda de ingressos para festas, com QR e faturamento AFIP',
     categories: 'Web App • Eventos • Faturamento AFIP • QR • Mercado Pago',
     description:
-      'Plataforma web para a venda de ingressos para eventos noturnos e festas. Compra com Mercado Pago, tickets com codigo QR, faturamento eletronico automatico com AFIP, sistema de pontos resgatavel, codigos de desconto, tipos de ingresso com vagas, revendedores com estatisticas, leitura de QR na entrada e login com Google/Facebook. Cinco funcoes diferenciadas.',
+      'Plataforma para vender ingressos de eventos noturnos. O usuário paga com Mercado Pago, recebe um ticket com QR e a fatura eletrônica da AFIP sai sozinha a cada compra. Tem tipos de ingresso com vagas e lotes, códigos de desconto, pontos trocáveis por produtos e login com Google ou Facebook. Na porta os QR são escaneados com controle de leitura dupla, e os revendedores têm seu link e suas estatísticas.',
     features: [
       {
         title: 'Para o Usuario',
@@ -846,19 +846,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Confirmacao de compra, pontos e recuperacao',
     ],
     highlights: [
-      'Faturamento eletronico automatico com AFIP em cada compra',
-      'Tipos de ingresso com lotes, vagas e horarios de venda independentes',
-      'Leitura QR com validacao anti-dupla-leitura e margem de 6 horas',
-      'Sistema de pontos resgatavel por produtos do catalogo',
-      'Analise detalhada por evento (genero, idade, horarios de pico, lotes)',
-      'Cinco funcoes: usuario, caixa, operador, revendedor, administrador',
+      'Fatura eletrônica da AFIP a cada compra',
+      'Tipos de ingresso com lotes, vagas e horários de venda próprios',
+      'Leitura de QR com controle de leitura dupla e margem de 6 horas',
+      'Pontos trocáveis por produtos do catálogo',
+      'Análise por evento: gênero, idade, horários de pico e lotes',
+      'Cinco funções: usuário, caixa, operador, revendedor e administrador',
     ],
   },
   'nodominium': {
-    subtitle: 'Site de Centro Cultural e Educativo em El Salvador',
+    subtitle: 'Site estático para um centro cultural em El Salvador',
     categories: 'Site Estatico • HTML/CSS/JS • Bitcoin • Google Maps',
     description:
-      'Site para Casa de Nodominium, centro independente de educacao e cultura em Playa Las Tunas, La Union, El Salvador. Eventos com slider tatil e lightboxes, informacoes institucionais, mapa interativo do Google Maps, formulario de contato com FormSubmit e doacoes em Bitcoin com codigo QR. Site completamente estatico sem backend.',
+      'Site para a Casa de Nodominium, um centro de educação e cultura em Playa Las Tunas, El Salvador. Mostra os eventos num slider com swipe e lightboxes com detalhes e patrocinadores, a história do centro, um mapa do Google Maps e um formulário de contato que funciona com FormSubmit. Aceita doações em Bitcoin com um QR. É HTML, CSS e JavaScript puro, sem backend.',
     features: [
       {
         title: 'Conteudo do Site',
@@ -888,19 +888,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Iconografia em toda a interface',
     ],
     highlights: [
-      'Site completamente estatico sem servidor nem banco de dados',
-      'Slider de eventos com suporte tatil para dispositivos moveis',
-      'Lightboxes com informacoes completas de cada evento',
-      'Doacoes em Bitcoin com QR escaneavel',
-      'Animacoes CSS puras sem bibliotecas externas',
-      'Formulario funcional com FormSubmit sem backend proprio',
+      'Site estático, sem servidor nem banco de dados',
+      'Slider de eventos com swipe no celular',
+      'Lightboxes com os detalhes de cada evento',
+      'Doações em Bitcoin com QR',
+      'Animações em CSS puro, sem bibliotecas',
+      'Formulário de contato com FormSubmit',
     ],
   },
   'mdt-ingenieros': {
-    subtitle: 'Controle de Horas e Gestao de Projetos de Topografia',
+    subtitle: 'Controle de horas e projetos para uma empresa de topografia',
     categories: 'Web App • RH • Faturamento • Assinaturas Digitais',
     description:
-      'Plataforma web para registro e controle de horas trabalhadas, gestao de projetos e geracao de relatorios para uma empresa de topografia. Jornadas com atividades, assinaturas digitais, aprovacao de horas extras, relatorios de folha em PDF, faturamento mensal com IVA e retencoes, calendario visual com status, rotacao de pessoal e monitoramento de horas nao registradas. Moeda: USD.',
+      'Sistema web para uma empresa de topografia que precisava controlar as horas da equipe por projeto. O colaborador registra a jornada com atividades, assinatura digital e, se precisar, pede horas extras que o supervisor aprova. Do lado administrativo tem calendário por projeto, relatórios de folha em PDF e faturamento mensal com IVA e retenção. Os resumos diários saem por e-mail e tudo é em dólares.',
     features: [
       {
         title: 'Para o Colaborador',
@@ -939,19 +939,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Upload de assinaturas digitais',
     ],
     highlights: [
-      'Calculo inteligente de horas extras por dia, feriado e almoco',
-      'Assinaturas digitais do topografo e supervisor nos relatorios',
-      'Faturamento mensal automatico com IVA (13%) e retencao (1%)',
-      'Calendario visual com status diarios por projeto',
-      'Monitoramento de horas nao registradas nos ultimos 7 dias',
-      'Rotacao de pessoal entre projetos com detalhamento mensal',
+      'Cálculo de horas extras conforme dia, feriado e desconto de almoço',
+      'Assinatura digital do topógrafo e do supervisor em cada relatório',
+      'Fatura mensal por projeto com IVA de 13% e retenção de 1%',
+      'Calendário com status diário por projeto',
+      'Aviso de horas sem registro nos últimos 7 dias',
+      'Rotação de pessoal entre projetos com detalhamento mensal',
     ],
   },
   'storybox': {
-    subtitle: 'Editor Interativo de Historias e Apresentacoes com Programacao Visual',
+    subtitle: 'Editor de histórias com blocos de programação visual',
     categories: 'Web App • Educacao • Programacao Visual • Blockly',
     description:
-      'Aplicacao web interativa para criar historias e apresentacoes multimidia com programacao visual. O usuario cria cenas com fundos, objetos arrastaveis e redimensionaveis, textos com multiplas fontes e estilos, musica de fundo por cena, transicoes animadas e programa o comportamento dos objetos usando blocos visuais (Blockly). Modo apresentacao em tela cheia, exportacao para PDF, salvamento no servidor com miniatura automatica, sistema de desfazer/refazer, copiar e colar, e interface bilingue espanhol/ingles.',
+      'É um app web para montar histórias e apresentações com cenas. Você coloca fundos, objetos que se arrastam e redimensionam, textos com fontes diferentes e música por cena, e depois programa o que cada objeto faz com blocos visuais do Blockly. Tem modo apresentação em tela cheia, exportação para PDF, desfazer e refazer, copiar e colar, e a interface está em espanhol e inglês. Tudo fica salvo no servidor com uma miniatura automática.',
     features: [
       {
         title: 'Editor de Cenas',
@@ -1001,21 +1001,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Notificacoes visuais de acoes',
     ],
     highlights: [
-      'Programacao visual com 17 tipos de blocos (movimento, aparencia, controle)',
-      'Editor de tela com drag & drop, 8 pontos de ancoragem, rotacao e camadas',
-      'Transicoes animadas em 8 direcoes com 3 velocidades',
-      'Musica de fundo por cena com reproducao automatica em loop',
-      'Sistema completo de desfazer/refazer baseado em pilhas',
-      'Exportacao para PDF de alta qualidade com html2canvas + jsPDF',
-      'Interface bilingue espanhol/ingles com textos dinamicos',
+      '17 tipos de blocos de movimento, aparência e controle',
+      'Tela com drag and drop, 8 pontos de ancoragem, rotação e camadas',
+      'Transições em 8 direções com 3 velocidades',
+      'Música de fundo por cena, em loop',
+      'Desfazer e refazer baseado em pilhas',
+      'Exportação para PDF com html2canvas e jsPDF',
+      'Interface em espanhol e inglês',
       'Salvamento no servidor com miniatura gerada automaticamente',
     ],
   },
   'konecta': {
-    subtitle: 'Aplicativo Movel de Controle de Presenca e Permissoes de Trabalho',
+    subtitle: 'App de ponto de funcionários por QR ou GPS',
     categories: 'App Movel • RH • QR • Geolocalizacao • Google Maps',
     description:
-      'Aplicativo movel multiplataforma para o controle de presenca de funcionarios. Registro de entrada e saida mediante codigo QR ou geolocalizacao GPS, historico de presenca com visualizacao de mapa no Google Maps, solicitacao de permissoes e incidencias com anexos, suporte multiempresa, selfie para foto de perfil, funcoes diferenciadas (funcionario e supervisor) e navegacao adaptavel conforme a funcao do usuario.',
+      'App mobile para os funcionários baterem ponto de entrada e saída escaneando um QR ou pela localização GPS. Cada registro fica num histórico com busca e aparece num mapa do Google Maps. Também dá para pedir permissões e registrar ocorrências com anexos, que o supervisor aprova ou rejeita pelo painel dele. Um mesmo usuário pode pertencer a várias empresas e a navegação muda conforme a função.',
     features: [
       {
         title: 'Para o Funcionario',
@@ -1055,19 +1055,19 @@ export const pt: Record<string, ProjectI18n> = {
       'Geracao de QR de confirmacao apos o registro',
     ],
     highlights: [
-      'Duplo metodo de registro: codigo QR e geolocalizacao GPS',
-      'Mapa interativo do Google Maps com historico de localizacoes',
-      'Suporte multiempresa com selecao por sessao',
-      'Funcoes diferenciadas com navegacao adaptavel (funcionario/supervisor)',
-      'Permissoes e incidencias com anexos e fluxo de aprovacao',
-      'Selfie para perfil com camera frontal codificada em Base64',
+      'Registro por QR ou por localização GPS',
+      'Mapa do Google Maps com o histórico de localizações',
+      'Várias empresas por usuário, com seleção por sessão',
+      'Navegação diferente para funcionário e supervisor',
+      'Permissões e ocorrências com anexos e aprovação',
+      'Selfie de perfil com a câmera frontal, salva em Base64',
     ],
   },
   'el-lobito-4pe': {
-    subtitle: 'Calculadora de Pontuacoes de Golfe para 4 Jogadores',
+    subtitle: 'Calculadora de apostas de golfe para 4 jogadores',
     categories: 'App Movel • Esportes • Calculo • React Native',
     description:
-      'Aplicativo movel para calcular as pontuacoes de um jogo de apostas de golfe entre 4 jogadores. Grade interativa de 18 buracos x 4 jogadores com calculo automatico de pontos segundo regras condicionais (empates anteriores, quantidade de marcados por buraco). Preco por unidade configuravel e resultados em pesos colombianos. Aplicativo autocontido sem backend nem banco de dados.',
+      'App mobile para fazer as contas de um jogo de apostas de golfe entre quatro amigos. É uma grade de 18 buracos por 4 jogadores. Você marca quem ganhou cada buraco e o app calcula os pontos com as regras do jogo, incluindo os empates que acumulam para o buraco seguinte. Dá para configurar o preço por unidade e os resultados saem em pesos colombianos. Não tem backend nem banco de dados.',
     features: [
       {
         title: 'Mecanica do Jogo',
@@ -1090,19 +1090,19 @@ export const pt: Record<string, ProjectI18n> = {
     ],
     integrationUses: [],
     highlights: [
-      'Regras de pontuacao ajustadas para partidas de 4 jogadores',
-      'Motor de calculo com multiplicadores por empates anteriores',
-      'Aplicativo autocontido: um unico componente, sem backend',
-      'Formato de moeda colombiana (COP) com locale es-CO',
-      'APK compilado incluido pronto para instalar',
-      'Grade com scroll horizontal para visualizacao confortavel',
+      'Regras de pontuação para partidas de 4 jogadores',
+      'Multiplicadores por empates acumulados',
+      'Um único componente, sem backend',
+      'Formato de pesos colombianos com locale es-CO',
+      'APK compilado pronto para instalar',
+      'Grade com scroll horizontal',
     ],
   },
   'casino-online': {
-    subtitle: 'Plataforma de Jogos de Azar com Apostas em Tempo Real',
+    subtitle: 'Cassino online com 5 jogos e apostas em tempo real',
     categories: 'Web App • Gaming • WebSocket • Redux • Firebase',
     description:
-      'Plataforma de cassino online com 5 jogos interativos (Caca-niqueis, Aviator, Blackjack, Roleta e Hunt the Ace), apostas em tempo real com WebSocket, painel de administracao com graficos estatisticos, sistema de indicacoes com bonificacao, programa de staking BFG, gestao de depositos e saques, CDN de imagens com ImageKit, e autenticacao segura com JWT e funcoes diferenciadas.',
+      'Plataforma de cassino online com cinco jogos: caça-níqueis, Aviator, blackjack, roleta e Hunt the Ace. As apostas e os resultados vão por WebSocket, então o saldo atualiza na hora. Tem depósitos, saques com aprovação, histórico de transações, indicações com bônus e um programa de staking. O painel de administração mostra gráficos, sessões ativas e permite bloquear contas.',
     features: [
       {
         title: 'Jogos Disponiveis',
@@ -1152,21 +1152,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Graficos estatisticos no dashboard de administracao',
     ],
     highlights: [
-      '5 jogos completos com logica de cassino implementada do zero',
-      'Apostas e resultados em tempo real com WebSocket (Socket.io)',
-      'Stack MERN completo com tripla biblioteca de UI (MUI + Ant Design + Bootstrap)',
-      'Sistema de indicacoes com bonificacao automatica de $10',
+      '5 jogos com a lógica de cassino programada do zero',
+      'Apostas e resultados em tempo real com Socket.io',
+      'Stack MERN com MUI, Ant Design e Bootstrap',
+      'Indicações com bônus automático de $10',
       'Programa BFG Staking com rendimentos calculados',
-      'CDN de imagens com ImageKit para carregamento otimizado',
-      'Estado global com Redux Toolkit para experiencia fluida entre jogos',
-      'Painel de administracao com graficos em tempo real',
+      'Imagens servidas pelo ImageKit',
+      'Estado global com Redux Toolkit compartilhado entre os jogos',
+      'Painel de administração com gráficos em tempo real',
     ],
   },
   'saucedo-abogados': {
-    subtitle: 'Sistema de Gestao Juridica com Assinatura Eletronica e Inteligencia Artificial',
+    subtitle: 'Gestão para um escritório de advocacia, com assinatura eletrônica e IA',
     categories: 'Web App • App Movel • Juridico • IA • Assinatura Eletronica • Laravel',
     description:
-      'Sistema integral de gestao para escritorio juridico com casos legais em 6 abas especializadas, gestao de clientes, orcamentos com fluxo de aprovacao, cobrancas, calendario integrado, 6 tipos de relatorios, indexacao de documentos com IA (OCR e resumo automatico), assinatura eletronica com SignNow, integracao com Google Drive e Google Calendar, painel Filament, app movel e 3 funcoes diferenciadas. Backend Laravel com 48 modelos e 88 endpoints.',
+      'Sistema de gestão para um escritório de advocacia. Cada caso tem suas partes, documentos, movimentações processuais, notas e tarefas, e pode ser atribuído a um ou mais advogados. Os orçamentos passam por um fluxo de aprovação com três funções e viram caso, e as cobranças têm lembretes de vencimento. Os PDFs são indexados com OCR e resumo automático com OpenAI, os documentos são assinados com SignNow e o calendário sincroniza nos dois sentidos com o Google Calendar. O backend é Laravel, com 48 modelos e 88 endpoints, e tem um app mobile que acompanha.',
     features: [
       {
         title: 'Gestao de Casos',
@@ -1219,21 +1219,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Testes end-to-end automatizados',
     ],
     highlights: [
-      'Indexacao de documentos com IA: OCR + resumo automatico com OpenAI',
-      'Assinatura eletronica com SignNow com validade juridica',
-      'Tripla integracao Google: Drive, Calendar e OAuth',
-      '48 modelos e 88 endpoints em Laravel para gestao juridica completa',
-      'Fluxo de aprovacao de orcamentos com 3 funcoes diferenciadas',
-      '6 tipos de relatorios para tomada de decisoes do escritorio',
-      'Casos com 6 abas especializadas para gestao integral',
-      'Testes E2E com Playwright e app movel complementar',
+      'OCR e resumo automático de documentos com OpenAI',
+      'Assinatura eletrônica com SignNow, com validade jurídica',
+      'Integração com Google Drive, Calendar e OAuth',
+      '48 modelos e 88 endpoints em Laravel',
+      'Orçamentos com aprovação em três funções',
+      '6 relatórios: casos, faturamento, cobranças, produtividade, clientes e orçamentos',
+      'Casos organizados em 6 abas',
+      'Testes end-to-end com Playwright e app mobile complementar',
     ],
   },
   'grupo-sdg': {
-    subtitle: 'Sistema de Gestao Empresarial com Faturamento Eletronico CFDI 4.0 (Mexico)',
+    subtitle: 'ERP para o México com faturamento CFDI 4.0',
     categories: 'Web App • ERP • Faturamento CFDI • Laravel 12 • SAT',
     description:
-      'Sistema de gestao empresarial para o mercado mexicano com faturamento eletronico CFDI 4.0. Pipeline de vendas completo (cotacao - pedido - fatura - pagamento - cobranca), emissao de comprovantes fiscais com certificados CSD, timbrado com PAC, validacao de RFC contra lista negra do SAT, modulo de tesouraria, politicas de senha com expiracao e 4 tabelas de auditoria. Backend Laravel 12 com 40+ modelos e 80+ endpoints documentados com Swagger.',
+      'Sistema de gestão para uma empresa mexicana, com faturamento eletrônico CFDI 4.0. O fluxo de vendas vai de cotação a pedido, fatura, pagamento e cobrança, levando os dados de uma etapa para a seguinte. Os comprovantes são assinados com certificados CSD, timbrados com um PAC e o RFC é validado contra a lista negra do SAT. Tem módulo de tesouraria com conciliação bancária, políticas de senha com expiração e quatro tabelas de auditoria. O backend é Laravel 12, com mais de 40 modelos e 80 endpoints documentados no Swagger.',
     features: [
       {
         title: 'Pipeline de Vendas',
@@ -1282,21 +1282,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Documentacao interativa de 80+ endpoints',
     ],
     highlights: [
-      'Faturamento CFDI 4.0 completo com timbrado PAC e certificados CSD',
-      'Pipeline de vendas end-to-end: cotacao ate cobranca',
-      'Validacao de RFC contra lista negra do SAT',
-      '4 tabelas de auditoria para rastreabilidade completa',
-      'Politicas de senha empresariais com expiracao periodica',
-      '40+ modelos e 80+ endpoints documentados com Swagger',
-      'Modulo de tesouraria com conciliacao bancaria',
-      'Catalogos oficiais do SAT integrados (uso CFDI, regime, forma de pagamento)',
+      'Faturamento CFDI 4.0 com timbrado PAC e certificados CSD',
+      'Fluxo de vendas de cotação a cobrança',
+      'Validação de RFC contra a lista negra do SAT',
+      '4 tabelas de auditoria: acessos, dados, fiscal e admin',
+      'Senhas com expiração e bloqueio',
+      'Mais de 40 modelos e 80 endpoints documentados com Swagger',
+      'Tesouraria com conciliação bancária',
+      'Catálogos oficiais do SAT: uso CFDI, regime e forma de pagamento',
     ],
   },
   'goodbye-friend': {
-    subtitle: 'Cemiterio Virtual 3D para Animais de Estimacao com Tumulos Interativos',
+    subtitle: 'Cemitério virtual em 3D para lembrar dos pets',
     categories: 'Web 3D • App Movel • Three.js • React Three Fiber • Stripe • Laravel',
     description:
-      'Plataforma de memorial virtual para animais de estimacao com um cemiterio 3D completo. Mais de 1.075 parcelas em 25+ fileiras, 3 estilos de tumulo, 57 objetos 3D de tributo, nichos circulares e mausoleus. Camera em primeira pessoa com pointer lock no desktop e joysticks tateis no celular, minimapa, renderizacao por distancia, perfis de animais com galerias, memoriais colaborativos, marketplace de colaboradores e pagamentos com Stripe. App movel com React Native e backend Laravel.',
+      'Memorial virtual para pets com um cemitério em 3D que se percorre em primeira pessoa. Tem mais de 1.075 parcelas, três estilos de túmulo, 57 objetos de tributo, nichos e mausoléus. No desktop se navega com pointer lock e no celular com joysticks de toque, com minimapa e colisões. Cada pet tem seu perfil com biografia e fotos, onde outras pessoas deixam tributos e condolências. Os planos e tributos são pagos com Stripe, tem um marketplace de artistas, app mobile em React Native e backend em Laravel.',
     features: [
       {
         title: 'Cemiterio 3D',
@@ -1345,21 +1345,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Captura e selecao de fotos pelo app movel',
     ],
     highlights: [
-      'Cemiterio 3D com 1.075+ parcelas, 3 estilos de tumulo e 57 objetos de tributo',
-      'Camera hibrida: pointer lock no desktop, joysticks tateis no celular',
-      'Renderizacao otimizada por distancia para manter 60fps',
-      'Minimapa de navegacao com posicao em tempo real',
-      'Marketplace de colaboradores para personalizacao de memoriais',
-      'Tres plataformas: web 3D (Three.js/R3F), app movel (React Native), backend (Laravel)',
-      'Sistema de colisoes para percurso realista',
-      'Monetizacao com Stripe: planos, tributos e pagamentos a colaboradores',
+      'Cemitério 3D com mais de 1.075 parcelas, 3 estilos de túmulo e 57 objetos de tributo',
+      'Pointer lock no desktop e joysticks de toque no celular',
+      'Renderização por distância para manter 60 fps',
+      'Minimapa com a posição em tempo real',
+      'Marketplace de artistas para personalizar memoriais',
+      'Web 3D com Three.js e R3F, app mobile em React Native e backend em Laravel',
+      'Colisões com os objetos do cemitério',
+      'Pagamentos com Stripe: planos, tributos e pagamentos a colaboradores',
     ],
   },
   'safetrade': {
-    subtitle: 'Marketplace de Sinais de Trading com Assinaturas',
+    subtitle: 'App para vender e seguir sinais de trading',
     categories: 'App Movel • Fintech • Trading • Stripe • Zustand • React Query',
     description:
-      'Aplicativo movel para compra e venda de sinais de trading. Os traders publicam sinais com analise tecnica e os clientes assinam para recebe-los. Duas funcoes diferenciadas, assinaturas recorrentes com Stripe, dashboard de desempenho, exploracao de traders com metricas de performance, graficos estatisticos, navegacao por abas conforme funcao, e validacao com Zod. Stack moderno: React Native, Expo, TypeScript, Zustand e React Query.',
+      'App mobile onde traders publicam sinais de trading e outros usuários assinam para receber. O trader cadastra ativo, direção, take profit e stop loss, e tem um dashboard com percentual de acertos, retorno acumulado e sequência. O cliente explora traders, assina por mês com Stripe e pode pausar ou cancelar quando quiser. Feito com React Native, Expo, TypeScript, Zustand e React Query.',
     features: [
       {
         title: 'Para Traders',
@@ -1395,21 +1395,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Graficos de desempenho e estatisticas de traders',
     ],
     highlights: [
-      'Duas funcoes com interfaces e navegacao completamente diferenciadas',
-      'Stack moderno: Zustand + React Query + Zod para estado, cache e validacao',
-      'Stripe nativo em React Native para pagamentos sem sair do app',
-      'Metricas automaticas: % acertos, retorno acumulado, sequencia vencedora',
-      'TypeScript completo em toda a aplicacao',
-      'Expo Router com abas condicionais conforme funcao do usuario',
-      'React Query com cache e sincronizacao otimista',
-      'Assinaturas recorrentes com cobranca mensal automatica',
+      'Duas funções com navegação e interface diferentes',
+      'Zustand, React Query e Zod para estado, cache e validação',
+      'Stripe nativo em React Native, sem sair do app',
+      'Métricas calculadas: percentual de acertos, retorno acumulado e sequência',
+      'Todo o app em TypeScript',
+      'Tabs do Expo Router que mudam conforme a função',
+      'React Query com cache e atualizações otimistas',
+      'Assinaturas com cobrança mensal automática',
     ],
   },
   'biznes': {
-    subtitle: 'Plataforma SaaS de Cartoes Digitais de Apresentacao',
+    subtitle: 'Cartões de visita digitais, com QR e assinaturas',
     categories: 'Web App • SaaS • E-commerce • QR • Mercado Pago • Redux',
     description:
-      'Plataforma SaaS para criar cartoes de apresentacao digitais personalizaveis e compartilhaveis por link ou QR. Editor visual com pre-visualizacao em tempo real, redes sociais integradas, botoes personalizados, vCard para download, sistema de assinaturas com Mercado Pago, loja de produtos com carrinho, painel de administracao completo, estatisticas detalhadas de interacoes (visitas, cliques, downloads, tempo em tela) e comunicacao em tempo real com Socket.IO.',
+      'É um SaaS para montar cartões de visita digitais e compartilhar por link ou QR. O usuário sobe foto, logo, bio, redes e botões, muda cores e fontes, e vê o resultado em tempo real num formato de celular. Cada cartão gera seu QR e um vCard para salvar o contato. As assinaturas e a loja são cobradas com Mercado Pago, e o painel mostra visitas, cliques, downloads e tempo em tela.',
     features: [
       {
         title: 'Editor de Cartoes',
@@ -1460,21 +1460,21 @@ export const pt: Record<string, ProjectI18n> = {
       'Documentacao interativa da API',
     ],
     highlights: [
-      'SaaS completo com assinaturas e permissoes granulares por plano',
-      'Editor visual avancado com pre-visualizacao em tempo real em formato celular',
-      'Estatisticas detalhadas: visitas, cliques, downloads, tempo em tela',
-      'QR + vCard automaticos para cada cartao digital',
-      'Loja de produtos com carrinho e checkout com Mercado Pago',
-      'Otimizacao de imagens automatica para WebP com Sharp',
-      'Importacao em massa de usuarios/cartoes a partir de Excel',
-      'Tarefas agendadas com Agenda.js para vencimento de assinaturas',
+      'Assinaturas com permissões configuráveis por plano',
+      'Editor com prévia em tempo real em formato de celular',
+      'Estatísticas de visitas, cliques, downloads e tempo em tela',
+      'QR e vCard gerados para cada cartão',
+      'Loja com carrinho e checkout com Mercado Pago',
+      'Imagens convertidas para WebP com Sharp',
+      'Importação em massa de usuários e cartões a partir de Excel',
+      'Tarefas agendadas com Agenda.js para vencer assinaturas',
     ],
   },
   'citamovil': {
-    subtitle: 'Sistema de Gestao de Reparos de Dispositivos Moveis',
+    subtitle: 'Site para uma assistência técnica de celulares e tablets na Espanha',
     categories: 'Web App • Servico Tecnico • WhatsApp Bot • Next.js 14 • Atacadistas',
     description:
-      'Plataforma web para um servico tecnico de reparo de celulares, tablets e dispositivos eletronicos na Espanha. Cotador automatico com tabela de precos por modelo, defeito e zona, sistema de ordens com acompanhamento por codigo de 5 digitos, notificacoes automaticas por e-mail e WhatsApp, gestao de atacadistas com aprovacao e acompanhamento, blog com editor enriquecido, e painel de administracao com conteudo 100% editavel.',
+      'Site para uma assistência técnica que conserta celulares, tablets e outros dispositivos na Espanha. O cliente faz a cotação escolhendo categoria, marca, modelo e defeitos, e o preço muda conforme a zona. Depois acompanha o conserto com um código de 5 dígitos e recebe cada mudança por e-mail e WhatsApp. Os atacadistas se cadastram, o administrador aprova e eles fazem pedidos em volume com endereço de coleta. O conteúdo do site é editado pelo painel sem mexer em código.',
     features: [
       {
         title: 'Para o Cliente',
@@ -1514,12 +1514,12 @@ export const pt: Record<string, ProjectI18n> = {
       'Avaliacoes do Google na pagina inicial',
     ],
     highlights: [
-      'Cotador inteligente com precos por modelo, defeito e zona geografica',
-      'Bot de WhatsApp integrado com whatsapp-web.js (sem servicos pagos)',
-      'Notificacoes multicanal: e-mail + WhatsApp automaticos',
-      'Sistema de atacadistas com cadastro, aprovacao e acompanhamento',
-      'Tabela de precos dinamica com drag & drop e exportacao para PDF',
-      'Conteudo 100% editavel pelo painel de administracao',
+      'Preços por modelo, defeito e zona',
+      'Bot de WhatsApp com whatsapp-web.js, sem serviços pagos',
+      'Avisos automáticos por e-mail e WhatsApp',
+      'Atacadistas com cadastro, aprovação e acompanhamento próprio',
+      'Tabela de preços com drag and drop e exportação para PDF',
+      'Todo o conteúdo editável pelo painel',
     ],
   },
 }

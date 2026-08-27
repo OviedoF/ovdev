@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import TransitionLink from '@/components/transition-link'
 import Navigation from '@/components/navigation'
@@ -8,7 +8,7 @@ import PatternBg from '@/components/home/pattern-bg'
 import { RevealWords, RevealBlock } from '@/components/home/reveal'
 import { projects, type Project } from '@/lib/projects'
 import { useTranslation } from '@/lib/i18n'
-import { getTranslatedProjects, initProjectTranslations } from '@/lib/translations'
+import { useTranslatedProjects } from '@/lib/translations'
 import { gsap, useGSAP, EASE_OUT } from '@/lib/gsap'
 
 function normalize(str: string): string {
@@ -79,22 +79,10 @@ function Tile({ project, muted }: { project: Project; muted: boolean }) {
 /* ------------------------------------------------------------------ */
 
 export default function WorkPage() {
-  const { t, locale } = useTranslation()
+  const { t } = useTranslation()
   const [activeFilter, setActiveFilter] = useState('all')
-  const [ready, setReady] = useState(locale === 'es')
   const wallRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (locale !== 'es') {
-      initProjectTranslations()
-      const timer = setTimeout(() => setReady(true), 100)
-      return () => clearTimeout(timer)
-    } else {
-      setReady(true)
-    }
-  }, [locale])
-
-  const translated = useMemo(() => (ready ? getTranslatedProjects(projects, locale) : projects), [locale, ready])
+  const translated = useTranslatedProjects(projects)
 
   // Filas: 10 / 10 / 9
   const rows = useMemo(() => {
@@ -115,11 +103,8 @@ export default function WorkPage() {
     return counts
   }, [])
   const availableFilters = useMemo(() => FILTER_KEYS.filter((key) => key === 'all' || filterCounts[key] > 0), [filterCounts])
-  // "Ideas que ya son productos" (las claves están en mayúsculas para el hero viejo)
-  const title = useMemo(() => {
-    const raw = `${t('work.hero.line1')} ${t('work.hero.line2')}`.toLowerCase()
-    return raw.charAt(0).toUpperCase() + raw.slice(1)
-  }, [t])
+  // Mismo título que la sección de proyectos del home ("Ideas que ya son productos"), ya en el casing correcto por idioma
+  const title = t('home.projects.title')
 
   // ---- Marquee por fila + expansión al hover
   useGSAP(

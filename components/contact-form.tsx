@@ -10,6 +10,7 @@ import { gsap, useGSAP, EASE_OUT } from '@/lib/gsap'
 const EMAIL = 'oviedofederico39@gmail.com'
 const WHATSAPP = '543492621665'
 const TYPES = ['web', 'app', 'system', 'shop', 'other'] as const
+const INTL_LOCALE: Record<string, string> = { es: 'es-AR', en: 'en-US', pt: 'pt-BR', fr: 'fr-FR', it: 'it-IT', de: 'de-DE', ja: 'ja-JP', zh: 'zh-CN' }
 
 /* ------------------------------------------------------------------ */
 /* Piezas                                                              */
@@ -17,14 +18,15 @@ const TYPES = ['web', 'app', 'system', 'shop', 'other'] as const
 
 /** Hora local en Rafaela, actualizada cada minuto */
 function LocalTime() {
+  const { locale } = useTranslation()
   const [time, setTime] = useState('')
   useEffect(() => {
-    const fmt = new Intl.DateTimeFormat('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Argentina/Cordoba' })
+    const fmt = new Intl.DateTimeFormat(INTL_LOCALE[locale] ?? 'es-AR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Argentina/Cordoba' })
     const tick = () => setTime(fmt.format(new Date()))
     tick()
     const id = setInterval(tick, 30_000)
     return () => clearInterval(id)
-  }, [])
+  }, [locale])
   return <span className="tabular-nums">{time || '--:--'}</span>
 }
 
@@ -141,7 +143,7 @@ export default function ContactForm() {
                 <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping" />
                 <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
               </span>
-              {t('contact.info.available')} · {t('contact.info.response').toLowerCase()}
+              {t('contact.info.available')} · {t('contact.info.response')}
             </p>
           </RevealBlock>
 

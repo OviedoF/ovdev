@@ -4,12 +4,14 @@ import { useRef } from 'react'
 import { useTranslation } from '@/lib/i18n'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { projects } from '@/lib/projects'
+import { useTranslatedProjects } from '@/lib/translations'
 import TransitionLink from '@/components/transition-link'
 import { RevealWords } from './reveal'
 
 // Destacados de la home (orden = orden de aparición)
 const FEATURED = ['petnder', 'controla2', 'saucedo-abogados', 'dental-digital', 'fuku-shop', 'biznes']
 
+const FEATURED_PROJECTS = FEATURED.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean) as typeof projects
 /**
  * Galería horizontal: en desktop la sección se fija y el scroll vertical
  * mueve las tarjetas en horizontal (scrub). En mobile es un carrusel nativo con snap.
@@ -17,7 +19,7 @@ const FEATURED = ['petnder', 'controla2', 'saucedo-abogados', 'dental-digital', 
 export default function HomeProjects() {
   const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
-  const featured = FEATURED.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean) as typeof projects
+  const featured = useTranslatedProjects(FEATURED_PROJECTS)
 
   useGSAP(
     () => {

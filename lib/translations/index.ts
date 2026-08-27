@@ -1,4 +1,5 @@
-import type { Locale } from '@/lib/i18n'
+import { useEffect, useMemo, useState } from 'react'
+import { useTranslation, type Locale } from '@/lib/i18n'
 import type { Project } from '@/lib/projects'
 import type { ProjectI18n } from './types'
 
@@ -50,4 +51,42 @@ export function getTranslatedProject(project: Project, locale: Locale): Project 
 
 export function getTranslatedProjects(projects: Project[], locale: Locale): Project[] {
   return projects.map(p => getTranslatedProject(p, locale))
+}
+
+/* ------------------------------------------------------------------ */
+/* Hooks                                                               */
+/* ------------------------------------------------------------------ */
+
+/** Carga (una vez) las traducciones de proyectos para el idioma activo. Devuelve `true` cuando están listas. */
+export function useProjectTranslations(): boolean {
+  const { locale } = useTranslation()
+  // `loaded` es estado propio (no derivado del locale) para que el primer cambio es→en,
+  // que ocurre después de leer localStorage, dispare un re-render cuando termina la carga.
+  const [loaded, setLoaded] = useState(() => syncCache !== null)
+  useEffect(() => {
+    if (locale === 'es' || loaded) return
+    let alive = true
+    loadTranslations().then((t) => {
+      syncCache = t
+      if (alive) setLoaded(true)
+    })
+    return () => {
+      alive = false
+    }
+  }, [locale, loaded])
+  return locale === 'es' || loaded
+}
+
+/** Lista de proyectos con textos en el idioma activo (cae al español mientras carga). */
+export function useTranslatedProjects(list: Project[]): Project[] {
+  const { locale } = useTranslation()
+  const ready = useProjectTranslations()
+  return useMemo(() => (ready ? getTranslatedProjects(list, locale) : list), [list, locale, ready])
+}
+
+/** Un proyecto con textos en el idioma activo. */
+export function useTranslatedProject(project: Project | null | undefined): Project | null {
+  const { locale } = useTranslation()
+  const ready = useProjectTranslations()
+  return useMemo(() => (project ? (ready ? getTranslatedProject(project, locale) : project) : null), [project, locale, ready])
 }

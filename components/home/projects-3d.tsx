@@ -6,6 +6,7 @@ import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/projects'
+import { useTranslatedProjects } from '@/lib/translations'
 import { useTranslation } from '@/lib/i18n'
 import { usePageTransition } from '@/lib/transition-context'
 import { scrollTo } from '@/components/smooth-scroll'
@@ -16,6 +17,7 @@ import { gsap, ScrollTrigger, useGSAP } from '@/lib/gsap'
 /* ------------------------------------------------------------------ */
 
 const FEATURED = ['petnder', 'controla2', 'saucedo-abogados', 'dental-digital', 'fuku-shop', 'biznes']
+const FEATURED_PROJECTS = FEATURED.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean) as typeof projects
 const RADIUS = 3.0
 /** Separación angular entre proyectos: 45° → los vecinos se ven a los costados, los demás quedan de canto/atrás */
 const STEP = Math.PI / 4
@@ -203,7 +205,7 @@ export default function Projects3D() {
   const stRef = useRef<ScrollTrigger | null>(null)
   const [active, setActive] = useState(0)
   const [running, setRunning] = useState(false)
-  const featured = useMemo(() => FEATURED.map((s) => projects.find((p) => p.slug === s)).filter(Boolean) as typeof projects, [])
+  const featured = useTranslatedProjects(FEATURED_PROJECTS)
   const urls = useMemo(() => featured.map((p) => p.image), [featured])
   const n = featured.length
 
