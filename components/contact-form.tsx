@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, ArrowUpRight, Check, Copy, Mail, MapPin, MessageCircle, Send } from 'lucide-react'
 import emailjs from 'emailjs-com'
 import { useTranslation } from '@/lib/i18n'
+import { EMAIL, waLink } from '@/lib/site'
+import { track } from '@vercel/analytics'
 import { RevealWords, RevealBlock } from '@/components/home/reveal'
 import { gsap, useGSAP, EASE_OUT } from '@/lib/gsap'
 
-const EMAIL = 'oviedofederico39@gmail.com'
-const WHATSAPP = '543492621665'
 const TYPES = ['web', 'app', 'system', 'shop', 'other'] as const
 const INTL_LOCALE: Record<string, string> = { es: 'es-AR', en: 'en-US', pt: 'pt-BR', fr: 'fr-FR', it: 'it-IT', de: 'de-DE', ja: 'ja-JP', zh: 'zh-CN' }
 
@@ -87,7 +87,7 @@ export default function ContactForm() {
     }
   }
 
-  const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t('contact.wa.prefill'))}`
+  const waHref = waLink(t('contact.wa.prefill'))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -153,6 +153,7 @@ export default function ContactForm() {
               <li>
                 <a
                   href={waHref}
+                  onClick={() => track('whatsapp_click', { page: 'contact' })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 py-4 border-b border-t-border-light/40 hover:border-t-accent/50 transition-colors"

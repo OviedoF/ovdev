@@ -8,12 +8,14 @@ import TransitionOverlay from '@/components/transition-overlay'
 import { I18nProvider } from '@/lib/i18n'
 import { ThemeProvider } from '@/lib/theme'
 import SmoothScroll from '@/components/smooth-scroll'
+import { SITE_URL } from '@/lib/site'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Federico Oviedo | Vos la idea, yo el resto',
+  metadataBase: new URL(SITE_URL),
+  title: { default: 'Federico Oviedo | Vos la idea, yo el resto', template: '%s | Federico Oviedo' },
   description: 'Hago sitios web, apps y sistemas a medida: diseño, programación y publicación. Con el plan mensual también me encargo de que sigan funcionando.',
   icons: {
     icon: [
