@@ -82,15 +82,18 @@ function Line({ children }: { children: ReactNode }) {
 }
 
 export default function HomeHero() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
   const { theme, openSelector } = useTheme()
   const current = themes.find((th) => th.code === theme)
   const ref = useRef<HTMLElement>(null)
+  const introTl = useRef<gsap.core.Timeline | null>(null)
+  const introRan = useRef(false)
 
   useGSAP(
     () => {
       const lines = gsap.utils.toArray<HTMLElement>('[data-line]')
       const tl = gsap.timeline({ defaults: { ease: 'none' }, delay: 0.4 })
+      introTl.current = tl
 
       // cada línea: "<" al empezar, ">" al terminar de escribirse
 
@@ -203,6 +206,24 @@ export default function HomeHero() {
       }
     },
     { scope: ref }
+  )
+
+  // Al cambiar de idioma el texto se re-renderiza y las letras nuevas nacen con opacity-0,
+  // pero la intro de tipeo ya corrió: se corta la timeline y se deja todo en su estado final.
+  useGSAP(
+    () => {
+      if (!introRan.current) {
+        introRan.current = true
+        return
+      }
+      introTl.current?.kill()
+      gsap.set('[data-char], [data-bracket-open], [data-bracket-close]', { opacity: 1 })
+      gsap.set('[data-underline]', { strokeDashoffset: 0 })
+      gsap.set('[data-cursor]', { opacity: 0 })
+      gsap.set('[data-hero-sub], [data-hero-scroll]', { opacity: 1, y: 0 })
+      gsap.set('[data-hero-card]', { opacity: 1, y: 0, rotate: -4 })
+    },
+    { scope: ref, dependencies: [locale] }
   )
 
   // Crossfade del GIF de fondo al cambiar de tema

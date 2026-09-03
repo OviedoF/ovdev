@@ -25,7 +25,9 @@ const wordReveal = {
 
 function AnimatedHeading({ text }: { text: string }) {
   return (
-    <motion.span variants={wordContainer()} initial="hidden" whileInView="show" viewport={{ once: true }}>
+    // key={text}: al cambiar de idioma se remonta y el reveal vuelve a correr
+    // (si no, las palabras nuevas quedan en "hidden" porque el whileInView once ya disparó)
+    <motion.span key={text} variants={wordContainer()} initial="hidden" whileInView="show" viewport={{ once: true }}>
       {text.split(' ').map((word, i) => (
         <span key={i} className="inline-block overflow-hidden mr-[0.3em]" style={{ perspective: '400px' }}>
           <motion.span variants={wordReveal} className="inline-block origin-bottom">
