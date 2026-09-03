@@ -15,18 +15,17 @@ function Typed({ segments }: { segments: Segment[] }) {
     <>
       {segments.map((seg, si) => {
         const words = seg.text.split(' ')
+        // Los chars van como spans inline comunes: el navegador no quiebra adentro de una
+        // palabra latina aunque esté partida en spans, y en ja/zh quiebra donde corresponde.
+        // Nada de inline-block acá: un bloque atómico ignora el word joiner de los brackets.
         const content = words.map((word, wi) => (
           <span key={wi}>
             {wi > 0 && ' '}
-            {word && (
-              <span className="inline-block whitespace-nowrap">
-                {Array.from(word).map((ch, ci) => (
-                  <span key={ci} data-char className="opacity-0">
-                    {ch}
-                  </span>
-                ))}
+            {Array.from(word).map((ch, ci) => (
+              <span key={ci} data-char className="opacity-0">
+                {ch}
               </span>
-            )}
+            ))}
           </span>
         ))
         if (seg.underline) {
@@ -67,12 +66,14 @@ function Line({ children }: { children: ReactNode }) {
   return (
     <div data-line>
       <span data-line-text className="relative">
+        {/* ⁠ (word joiner): prohíbe el quiebre de línea entre el bracket y la palabra,
+            para que "<" no quede huérfano ni ">" caiga solo a la línea siguiente */}
         <span data-bracket-open aria-hidden className="text-t-text-tertiary/70 font-extralight opacity-0 mr-[0.06em]">
-          &lt;
+          {'<⁠'}
         </span>
         {children}
         <span data-bracket-close aria-hidden className="text-t-text-tertiary/70 font-extralight opacity-0 ml-[0.06em]">
-          &gt;
+          {'⁠>'}
         </span>
         {/* cursor de tipeo: se posiciona por JS detrás del último carácter escrito */}
         <span data-cursor aria-hidden className="absolute w-[2px] md:w-[3px] bg-t-accent opacity-0 pointer-events-none" />
